@@ -1,0 +1,36 @@
+% === Default Packages === 
+% Headings and subheadings
+\usepackage{hyperref}
+% Math formatting
+\usepackage{amsmath}
+% Strikethrough (\st)
+\usepackage{soul}
+% Tables
+\usepackage{longtable}
+\usepackage{calc,array}
+% Underline (\uline)
+\usepackage[normalem]{ulem}
+% Bullet-points (\tightlist)
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% === Features ===
+% Disable compression for faster compilation
+\special{dvipdfmx:config z 0}
+% Function to use default text when a YAML variable isn't set
+\newcommand\default[2]{%
+	\if\relax\detokenize{#1}\relax{#2}\else{#1}\fi%
+}
+% Draw rectangle/circle around text (source: https://latex.org/forum/viewtopic.php?f=5&t=1152http://www.latex-community.org/forum/viewtopic.php?f=5&t=1152)
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\newcommand{\rectangleText}[1]{%
+	\tikz[baseline=(char.base)]\node[anchor=south west, draw,rectangle, rounded corners, inner sep=0pt, minimum size=7mm,
+		text height=2mm](char){#1} ;}
+\newcommand{\circleText}[1]{%
+	\tikz[baseline=(char.base)]\node[anchor=south west, draw,circle, inner sep=0pt, minimum size=7mm,
+		text height=2mm](char){#1} ;}
+% Get current date (for automatically setting date in templates that use it)
+\usepackage[nodayofweek]{datetime}
+% Disable header numbering
+\setcounter{secnumdepth}{0}

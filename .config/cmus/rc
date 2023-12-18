@@ -1,0 +1,6 @@
+set output_plugin=pulse
+set mouse=true
+set follow=true
+set start_view=browser
+colorscheme dracula
+cd ~/Music/Soulseek/
