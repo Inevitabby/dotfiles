@@ -10,7 +10,7 @@
 - [Ricing](#ricing)
 - [Greatest Hits](#greatest-hits)
 - [The Big Picture](#the-big-picture)
-- [Licenses & Redistribution](#licenses--redistribution)
+- [Licenses & Redistribution](#licenses-redistribution)
 
 # Installation
 
