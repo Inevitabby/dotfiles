@@ -1,0 +1,28 @@
+\documentclass[12pt,letterpaper]{article}
+% Common settings
+\input{~/.config/nvim/pandoc/common-pandoc.tex}
+% Provide: mla-paper package
+\usepackage{ifpdf}
+\usepackage{mla}
+% Feature: Override mla.sty linespread with the mla.linespread variable
+$if(mla.linespread)$\linespread{$mla.linespread$}$else$
+\linespread{2}
+$endif$
+% Begin document
+\begin{document}
+	\begin{mla}{%
+		\default{$firstName$}{John}%
+	}{%
+		\default{$lastName$}{Doe}%
+	}{%
+		\default{$professor$}{Professor Foobius Bar}%
+	}{%
+		\default{$class$}{ABC 1234}%
+	}{%
+		\default{$date$}{\shortdate\today}%
+	}{%
+		\default{$title$}{Title}%
+	}%
+		$body$
+	\end{mla}
+\end{document}

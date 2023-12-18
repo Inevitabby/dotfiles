@@ -1,0 +1,111 @@
+=== to build: `mkspell! ~/.config/nvim/spell/en.utf-8.add` ===
+=== latex ===
+centerline
+includegraphics
+lor
+newpage
+rightarrow
+scalebox
+texttrademark
+=== propositional logic ===
+hyp
+== inference rules ==
+add
+con
+cont
+dist
+ds
+exp
+hs
+inc
+modus
+mp
+mt
+ponens
+self
+sim
+tollens
+== equivalence rules ==
+ass
+comm
+de
+dn
+equ
+imp
+=== file formats ===
+png
+svg
+=== math ===
+iif
+nonnegative
+wff
+=== abbreviations: misc ===
+aids
+bce
+dof
+ee
+hipaa
+nea
+=== brands / services / companies ===
+airpods
+chatgpt
+gofundme
+hydroflask
+kickstarter
+spacex
+uber
+youtube
+=== computer ===
+algebraist
+async
+backpropagation
+compsci
+convolutional
+csr
+cwd
+cybersecurity
+disjunction
+foundational
+jvm
+leetcode
+microsystems
+oop
+pseudocode
+replit
+=== chemistry ===
+amphipathic
+disaccharide
+disaccharides
+monosaccharide
+monosaccharides
+nonpolar
+phosphoglycerides
+polysaccharide
+polysaccharides
+ribosomes
+sickled
+=== education ===
+gradescope
+mcq
+scantron
+=== people ===
+atticus
+fanon's
+frantz
+hisaishi
+mlk
+mohandas
+=== photography ===
+heliograph
+mirrorless
+obscura
+photoreactive
+pictorialist
+=== misc ===
+boycotters
+defunding
+eurocentrism
+extraspection
+homeslice
+redux
+slapfights

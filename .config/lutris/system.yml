@@ -1,0 +1,8 @@
+system:
+  disable_runtime: false
+  dri_prime: false
+  game_path: /media/Data/Games/Lutris/
+  gamemode: true
+  reset_desktop: false
+  restore_gamma: false
+  single_cpu: false

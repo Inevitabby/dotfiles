@@ -1,0 +1,10 @@
+system: {}
+wine:
+  autoconf_joypad: true
+  battleye: false
+  dxvk_version: system
+  eac: false
+  esync: false
+  fsync: false
+  system_winetricks: true
+  version: system
