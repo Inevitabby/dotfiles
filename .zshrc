@@ -50,15 +50,10 @@ alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 alias auto-editor="${HOME}/Scripts/venv/bin/auto-editor --ffmpeg-location '/usr/bin/ffmpeg' --no-open"
 
 # Whoogle Search
-alias whoogle-search="${HOME}/Scripts/venv/bin/whoogle-search" # Launch whoogle search
-alias subliminal="${HOME}/Scripts/venv/bin/subliminal" # Launch whoogle search
+alias whoogle-search="${HOME}/Scripts/venv/bin/whoogle-search"
 
-# OSINT
-alias sherlock="${HOME}/Scripts/venv/bin/python3 ${HOME}/Scripts/venv/sherlock/sherlock/sherlock.py" # Launch sherlock
-alias holehe="${HOME}/Scripts/venv/bin/holehe" # Launch holehe
-
-# Quitly Close Terminal Emulator
-alias :q="exit"
+# Subliminal
+alias subliminal="${HOME}/Scripts/venv/bin/subliminal"
 
 # =======
 # Exports
