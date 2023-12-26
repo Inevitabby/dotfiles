@@ -27,6 +27,9 @@ alias cp="cp -i" # Confirm before overwriting something
 alias df="df -h" # Human-readable sizes
 alias free='free -m' # Show sizes in MB
 
+# Portage
+alias update="sudo emerge --update --deep --newuse --verbose @world --ask"
+
 # nnn
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
 alias notes="nnn ${HOME}/Sync/Notes/Personal" # ... in my [personal] notes directory
