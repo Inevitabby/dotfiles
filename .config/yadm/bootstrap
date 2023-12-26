@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Prompt for confirmation
+function prompt {
+	local MESSAGE=$1
+	printf "\e[1;34m%-6s\e[m %s \n" "${MESSAGE}"
+	select ynq in "Yes" "No"; do
+		case $ynq in
+			Yes ) 
+				return 0;;
+			No ) 
+				return 1;;
+		esac
+	done
+}
+# Git clone from GitHub.com, but remove all extraneous stuff after downloading.
+function clone {
+	local REPOSITORY=$1
+	local DIRECTORY=$2
+	# Rename or delete directory if it already exists
+	if [ -d "$DIRECTORY" ]; then
+		if prompt "Warning: Old folder (${DIRECTORY}) was found, would you like to delete it? (if 'No', then the folder will be renamed)"; then
+			rm -rf "${DIRECTORY}"
+		else
+			local TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+			local NEWDIRECTORY="${DIRECTORY}-old-${TIMESTAMP}"
+			mv "${DIRECTORY}" "${NEWDIRECTORY}"
+			printf "Important: Old folder was found and renamed to %s. Remember to delete it up yourself! \n" "${NEWDIRECTORY}."
+		fi
+	fi
+	mkdir -p "${DIRECTORY}"
+	git clone --depth=1 --branch=master --quiet "http://github.com/${REPOSITORY}.git" "${DIRECTORY}"
+	cd "${DIRECTORY}" || error "Couldn't access ${DIRECTORY}"
+		rm -rf ".git" ".github" ".circleci" "docs" "images" "tests" "spec" "src" 
+		rm -f "Makefile" "DESCRIPTION" "Dockerfile" "URL" "VERSION" "ZSH_VERSIONS" "Gemfile" "Gemfile.lock" "install_test_zsh.sh" 
+		find . -name '.*' -type f -delete  # Remove hidden files
+		find . -name "*.md" -type f -delete # Remove *.md
+		find . -name "*.png" -type f -delete # Remove *.png
+		find . -name "test-data" -type d -exec rm -r {} + # Remove test-data directories
+	cd ".."
+}
+# Install a Python package into a virtual environment in ~/Scripts
+function pythonInstall {
+	local PACKAGE=$1
+	local DIRECTORY="${HOME}/Scripts"
+	mkdir -p "${DIRECTORY}"
+	cd "${DIRECTORY}" || error "Couldn't access ~/Scripts"
+	python -m venv venv
+	./venv/bin/pip3 install --disable-pip-version-check "${PACKAGE}"
+}
+# Print error and exit
+function error {
+	local MESSAGE=$1
+	echo "ERROR: ${MESSAGE}"
+	exit
+}
+
+# Find Firefox Profile Path (https://askubuntu.com/a/354907)
+cd ~/.mozilla/firefox/ || error "Couldn't access ~/.mozilla/firefox/"
+if [[ $(grep '\[Profile[^0]\]' profiles.ini) ]]; then
+	FIREFOX_PROFILE=$(grep -E '^\[Profile|^Path|^Default' profiles.ini | grep -1 '^Default=1' | grep '^Path' | cut -c6-)
+else
+	FIREFOX_PROFILE=$(grep 'Path=' profiles.ini | sed 's/^Path=//')
+fi
+FIREFOX_PROFILE="${HOME}/.mozilla/firefox/${FIREFOX_PROFILE}"
+
+# Step I: Install Arkenfox
+if prompt "I. Would you like to install Arkenfox + user-overrides.js to ${FIREFOX_PROFILE}?"; then
+	echo "Bootstrap: Installing user-overrides.js to ${FIREFOX_PROFILE}"
+	cp "${HOME}/.config/yadm/firefox/user-overrides.js" "${FIREFOX_PROFILE}/user-overrides.js"
+	bash "${HOME}/.config/yadm/firefox/user.js/updater.sh" -p "${FIREFOX_PROFILE}"
+fi
+
+# Step II: Install Firefox Userchrome
+if prompt "II. Would you like to install Cascade + userChrome.css to ${FIREFOX_PROFILE}?"; then
+	echo "Bootstrap: Installing userChrome to ${FIREFOX_PROFILE}"
+	cp -r "${HOME}/.config/yadm/firefox/chrome/" "${FIREFOX_PROFILE}/chrome/"
+fi
+
+# Step III: Update all Zsh plugins
+if prompt "III. Would you like to update powerlevel10k + zsh-autosuggestions + zsh-history-substring-search + zsh-syntax-highlighting?"; then
+	mkdir -p "${HOME}/.zsh"
+	cd "${HOME}/.zsh" || error "Couldn't access ~/.zsh/"
+	clone "romkatv/powerlevel10k" "powerlevel10k"
+	clone "zsh-users/zsh-autosuggestions" "zsh-autosuggestions"
+	clone "zsh-users/zsh-history-substring-search" "zsh-history-substring-search"
+	clone "zsh-users/zsh-syntax-highlighting" "zsh-syntax-highlighting"
+	echo "" | tee "zsh-syntax-highlighting/.revision-hash" "zsh-syntax-highlighting/.version" > /dev/null
+fi
+
+# Step IV: Install various Python cli tools to ~/Scripts, accessible through aliases in ~/.zshrc
+if prompt "IV.1 Would you like to install auto editor to a virtual Python environment in ~/Scripts? (https://github.com/WyattBlue/auto-editor)"; then
+	pythonInstall "auto-editor"
+fi
+if prompt "IV.2 Would you like to install whoogle to a virtual Python environment in ~/Scripts? (https://github.com/benbusby/whoogle-search)"; then
+	pythonInstall "whoogle-search"
+fi
+if prompt "IV.3 Would you like to install subliminal to a virtual Python environment in ~/Scripts? (https://github.com/Diaoul/subliminal)"; then
+	pythonInstall "subliminal"
+fi
+
+# Step V: Update/Install Neovim Plugins + Vim Plug using Vim Plug
+if prompt "V. Would you like to update/install all Neovim plugins + Vim Plug? (Vim Plug is assumed to already be installed)"; then
+	nvim -c "PlugUpgrade |  PlugInstall | PlugUpdate | quitall"
+fi
+
+# Step VI: Install mla.sty into TeX Home directory so that it can be used by XeLaTeX to convert academic Markdown into MLA-formatted PDFs (see: ~/.config/nvim/pandoc/sample-mla.*)
+TEX_HOME=$(kpsewhich -var-value=TEXMFHOME)
+if prompt "VI. Would you like to install mla.sty and fphw.cls into your TeX home directory (${TEX_HOME})? This makes it accessible to XeLaTeX for exporting academic Markdown to MLA-formatted PDFs from Neovim (see: ~/.config/nvim/pandoc/sample-mla.* for a demo)"; then
+	INSTALL_DIR="${TEX_HOME}/tex/latex/local/"
+	mkdir -p "${INSTALL_DIR}"
+	cp "${HOME}/.config/yadm/xelatex/mla.sty" "${INSTALL_DIR}"
+	cp "${HOME}/.config/yadm/xelatex/fphw.cls" "${INSTALL_DIR}"
+fi
+
+printf "\e[1;34m%-6s\e[m" "Bootstrap script finished!"
