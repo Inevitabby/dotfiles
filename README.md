@@ -95,6 +95,33 @@ com -bar Wq exe 'W' | quit
 **Firefox**:
 1. [Userchrome tweaks](https://codeberg.org/Inevitabby/dotfiles/src/branch/master/.config/yadm/firefox)
 
+**Gentoo Maintenance**:
+
+```bash
+/etc/cron.daily/eclean
+---
+#!/usr/bin/env bash
+sudo eclean-kernel --num 1
+sudo eclean-distfiles --deep
+echo "Daily eclean ran" >> /tmp/dailyEcleanFlag
+```
+
+```bash
+/etc/cron.daily/sync-ebuild-repos
+---
+#!/usr/bin/env bash
+sudo emaint sync -a
+echo "Daily sync ran" >> /tmp/dailySyncRanCronFlag
+```
+
+```bash
+~/.zshrc
+---
+alias update="sudo emerge --update --deep --newuse --verbose @world --ask"
+```
+
+> **Note**: Remember that cron scripts need e**x**ecute permission! (`chmod +x <file>`)
+
 # The Big Picture
 
 I use a lot of different tools in my day-to-day life that don't even have dotfiles to store here. Think of this list as my "meta-dotfiles".
