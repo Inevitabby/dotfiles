@@ -16,7 +16,7 @@ function! VisualMapping(prefix, ...)
 		execute "normal! gvdi" . a:prefix . "\<ESC>pa" . l:suffix . "\<ESC>"
 	" Linewise select
 	elseif visualmode() ==# "V" 
-		execute "normal! \<ESC>'<I" . a:prefix . "\<ESC>'>A" . l:suffix . "\<ESC>gv"
+		execute "normal! \<ESC>'<I" . a:prefix . "\<ESC>'>A" . l:suffix . "\<ESC>"
 	" Blockwise select
 	elseif visualmode() ==# "\<C-V>" 
 		" TODO
