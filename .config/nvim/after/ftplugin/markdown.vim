@@ -2,33 +2,53 @@
 lua require("twilight").setup({ dimming = { alpha = 0.5 }, context = 0, expand = { "paragraph", "fenced_code_block", "list" } })
       
 " === Markdown Syntax Keymaps ===
-" Affects selection (visual mode), last-written word (insert mode), and word under cursor (normal mode), respectively
+" == Utility Functions ==
+" Utility function to provide mappings for the three different visual modes
+function! VisualMapping(prefix, ...)
+	" Optional suffix (defaults to prefix)
+	if a:0 > 0
+		let suffix = a:1
+	else
+		let suffix = a:prefix
+	end
+	" Character-wise select
+	if visualmode() ==# "v" 
+		execute "normal! gvdi" . a:prefix . "\<ESC>pa" . l:suffix . "\<ESC>"
+	" Linewise select
+	elseif visualmode() ==# "V" 
+		execute "normal! \<ESC>'<I" . a:prefix . "\<ESC>'>A" . l:suffix . "\<ESC>gv"
+	" Blockwise select
+	elseif visualmode() ==# "\<C-V>" 
+		" TODO
+	endif
+endfunction
+" == Keymaps ==
 " Alt-b to bold 
-vmap <A-b> di****<ESC>hPE
+vmap <silent> <A-b> :call VisualMapping("**")<CR>
 imap <A-b> <ESC>diwi****<ESC>hPEa
 nmap <A-b> diwi****<ESC>hPE
 " Alt-i to italicize
-vmap <A-i> di**<ESC>PE
+vmap <silent> <A-i> :call VisualMapping("*")<CR>
 imap <A-i> <ESC>diwi**<ESC>PEa
 nmap <A-i> diwi**<ESC>PE
-" Alt-u to underline
-vmap <A-u> di[<ESC>pa]{.underline}
+" Alt-u to underline (Pandoc Markdown style)
+vmap <silent> <A-u> :call VisualMapping("[", "]{.underline}")<CR>
 imap <A-u> <ESC>diwi[<ESC>pa]{.underline}
 nmap <A-u> diwi[<ESC>pa]{.underline}
 " Alt-c to backtick-ify
-vmap <A-c> di``<ESC>PE
+vmap <silent> <A-c> :call VisualMapping("`")<CR>
 imap <A-c> <ESC>diwi``<ESC>PEa
 nmap <A-c> diwi``<ESC>PE
 " Alt-s to strike-through
-vmap <A-s> di~~~~<ESC>hPE
+vmap <silent> <A-s> :call VisualMapping("~~")<CR>
 imap <A-s> <ESC>diwi~~~~<ESC>hPEa
 nmap <A-s> diwi~~~~<ESC>hPE
 " Alt+' to single-quote
-vmap <A-'> di''<ESC>PE
+vmap <silent> <A-'> :call VisualMapping("'")<CR>
 imap <A-'> <ESC>diwi''<ESC>PEa
 nmap <A-'> diwi''<ESC>PE
 " Alt+" to double-quote
-vmap <A-"> di""<ESC>PE
+vmap <silent> <A-"> :call VisualMapping("\"")<CR>
 imap <A-"> <ESC>diwi""<ESC>PEa
 nmap <A-"> diwi""<ESC>PE
 
