@@ -180,6 +180,8 @@ map <silent> <leader>tw :Twilight<CR>zz
 " <ctrl>s to save
 nnoremap <silent> <c-s> :update <Bar> echo "Saving"<CR>
 inoremap <silent> <c-s> <Esc>:update <Bar> echo "Saving"<CR>a
+" <ctrl>f in insert-mode to fix previous word (https://web.archive.org/web/20231225131145/https://castel.dev/post/lecture-notes-1/#correcting-spelling-mistakes-on-the-fly)
+inoremap <silent> <C-f> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " HACK: Map ZZ and ZQ to their equivalent commands so that abbreviations for :x and :q also apply to them
 map <silent> ZZ :x<CR>
