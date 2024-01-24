@@ -26,6 +26,7 @@ lua <<EOF
 						"MORFOLOGIK_RULE_EN_US",
 						-- Keeps lighting up my Markdown tables like a Christmas tree (https://github.com/valentjn/vscode-ltex/issues/605)
 						"WHITESPACE_RULE",
+						"COMMA_PARENTHESIS_WHITESPACE",
 						-- Keeps telling me to replace "criminal" with "kryminalista" for some reason.
 						"CRIMINAL",
 						-- Too Picky Rules
