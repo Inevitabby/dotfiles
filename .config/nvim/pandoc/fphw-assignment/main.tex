@@ -34,6 +34,7 @@
 
 % Feature: Override linespread with the fphw.linespread variable
 $if(fphw.linespread)$\linespread{$fphw.linespread$}$endif$
+$if(fphw.margins)$\geometry{left=$fphw.margins$,right=$fphw.margins$,top=$fphw.margins$,bottom=$fphw.margins$}$endif$
 
 \usepackage{graphicx} % Required for including images
 
