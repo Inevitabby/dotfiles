@@ -34,7 +34,7 @@ alias update="sudo emerge --update --deep --newuse --verbose @world --ask"
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
 alias notes="nnn ${HOME}/Sync/Notes/Personal" # ... in my [personal] notes directory
 alias school="nnn '${HOME}/Sync/Notes/School/Spring 2024'" # ... in my school directory
-alias codeberg="nnn '${HOME}/Scripts/Codeberg/notes/'" # ... in my Codeberg notes directory
+alias codeberg="cd '${HOME}/Scripts/Codeberg/notes/'; git pull; nnn .; git status" # ... in my Codeberg notes directory
 alias scripts="nnn '${HOME}/Scripts'" # ... in my scripts directory
 
 # Quick Notes
