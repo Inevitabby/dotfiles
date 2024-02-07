@@ -41,3 +41,6 @@ lua << EOF
 		}
 	})
 EOF
+
+" numToStr/Comment.nvim: Setup
+lua require('Comment').setup()
