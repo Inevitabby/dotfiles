@@ -3,6 +3,7 @@ system:
   dri_prime: false
   game_path: /media/Data/Games/Lutris/
   gamemode: true
+  locale: ''
   reset_desktop: false
   restore_gamma: false
   single_cpu: false
