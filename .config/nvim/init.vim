@@ -84,6 +84,8 @@ call plug#begin()
 	Plug 'tpope/vim-sleuth'
 	" Integrated keymappings to work with surrounding text
 	Plug 'tpope/vim-surround'
+	" Comment keymaps with treesitter integration
+	Plug 'numToStr/Comment.nvim'
 
 	" === Navigation ===
 	" Fuzzy finder (optional system deps: `fd` and `ripgrep`)
