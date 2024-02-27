@@ -1,6 +1,6 @@
 " folke/twilight.nvim: Change highlight settings to be less ass for prose
 lua require("twilight").setup({ dimming = { alpha = 0.5 }, context = 0, expand = { "paragraph", "fenced_code_block", "list" } })
-      
+
 " === Markdown Syntax Keymaps ===
 " == Utility Functions ==
 " Utility function to provide mappings for the three different visual modes
@@ -61,9 +61,6 @@ nnoremap <silent> <leader>pfl :PandocMarkdownToFphwLivePreview<CR>
 nnoremap <silent> <leader>pm :PandocMarkdownToMla<CR>
 nnoremap <silent> <leader>pml :PandocMarkdownToMlaLivePreview<CR>
 nnoremap <silent> <leader>ps :PdfStats<CR>
-" == Filetype Fixes & Setup ==
-" Disable folding module
-let g:pandoc#modules#disabled = [ "folding" ] 
 " == Custom Functions ==
 " Convert a Markdown file to a PDF with Pandoc using XeLaTeX.
 function PandocMultitool (pandocArgs, livePreview=0, silent=0)
