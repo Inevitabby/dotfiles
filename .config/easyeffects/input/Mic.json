@@ -25,8 +25,10 @@
                 "preamp": 0.0,
                 "reactivity": 10.0,
                 "source": "Middle",
+                "stereo-split-source": "Left/Right",
                 "type": "Feed-forward"
             },
+            "stereo-split": false,
             "threshold": -12.0,
             "wet": 0.0
         },
@@ -48,13 +50,18 @@
             "threshold": -18.0
         },
         "filter#0": {
-            "bypass": false,
+            "balance": 0.0,
+            "bypass": true,
+            "equal-mode": "IIR",
             "frequency": 80.0,
-            "inertia": 20.0,
+            "gain": 0.0,
             "input-gain": 0.0,
-            "mode": "12dB/oct Highpass",
+            "mode": "RLC (BT)",
             "output-gain": 0.0,
-            "resonance": -3.0
+            "quality": 0.0,
+            "slope": "x1",
+            "type": "Low-pass",
+            "width": 4.0
         },
         "gate#0": {
             "attack": 5.0,
@@ -80,8 +87,10 @@
                 "mode": "RMS",
                 "preamp": 0.0,
                 "reactivity": 10.0,
-                "source": "Middle"
+                "source": "Middle",
+                "stereo-split-source": "Left/Right"
             },
+            "stereo-split": false,
             "wet": 0.0
         },
         "limiter#0": {
@@ -115,9 +124,13 @@
         ],
         "rnnoise#0": {
             "bypass": false,
+            "enable-vad": true,
             "input-gain": 0.0,
             "model-path": "",
-            "output-gain": 0.0
+            "output-gain": 0.0,
+            "release": 20.0,
+            "vad-thres": 5.0,
+            "wet": 0.0
         },
         "stereo_tools#0": {
             "balance-in": 0.0,
