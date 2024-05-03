@@ -28,7 +28,7 @@ alias df="df -h" # Human-readable sizes
 alias free='free -m' # Show sizes in MB
 
 # Portage
-alias update="sudo emerge --update --deep --newuse --verbose @world --ask"
+alias update="sudo emerge --update --deep --newuse --verbose @world --keep-going --ask"
 
 # nnn
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
