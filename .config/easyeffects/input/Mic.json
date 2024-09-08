@@ -49,20 +49,6 @@
             "sc-listen": false,
             "threshold": -18.0
         },
-        "filter#0": {
-            "balance": 0.0,
-            "bypass": true,
-            "equal-mode": "IIR",
-            "frequency": 80.0,
-            "gain": 0.0,
-            "input-gain": 0.0,
-            "mode": "RLC (BT)",
-            "output-gain": 0.0,
-            "quality": 0.0,
-            "slope": "x1",
-            "type": "Low-pass",
-            "width": 4.0
-        },
         "gate#0": {
             "attack": 5.0,
             "bypass": false,
@@ -117,7 +103,6 @@
             "stereo_tools#0",
             "gate#0",
             "compressor#0",
-            "filter#0",
             "rnnoise#0",
             "deesser#0",
             "limiter#0"
