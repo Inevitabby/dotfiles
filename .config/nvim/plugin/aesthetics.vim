@@ -55,7 +55,7 @@ EOF
 
 " folke/noice.nvim: Setup
 lua << EOF
-	vim.notify = require("noice").setup({
+	require("noice").setup({
 		lsp = {  -- Disable LSP Indicator
 			progress = { enabled = false }
 		},
