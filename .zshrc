@@ -74,6 +74,9 @@ export VISUAL=/usr/bin/nvim
 # Prefer Dolphin Filepicker over GNOME (maybe this should be a global environment variable? or maybe that would create problems...)
 export GTK_USE_PORTAL=1
 
+# Spicetify
+export PATH="$PATH:${HOME}/.spicetify"
+
 # =============
 # Shell Options
 # =============
