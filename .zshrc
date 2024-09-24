@@ -20,7 +20,7 @@ prompt gentoo
 # =======
 
 # Coreutils
-alias ls="ls --color=auto"
+alias ls="eza"
 alias grep="grep --color=auto"
 alias diff="diff --color --side-by-side --minimal"
 alias cp="cp -i" # Confirm before overwriting something
