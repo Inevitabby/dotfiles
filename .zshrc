@@ -156,6 +156,9 @@ bindkey '^[[1;5C' forward-word
 bindkey '^H' backward-kill-word # Ctrl + Backspace to delete previous word
 bindkey '^[[Z' undo # Shift + Tab to undo last action
 
+# fzf Integration
+source <(fzf --zsh)
+
 # =======
 # Theming
 # =======
