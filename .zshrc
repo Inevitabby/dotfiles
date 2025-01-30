@@ -78,6 +78,19 @@ export GTK_USE_PORTAL=1
 # Spicetify
 export PATH="$PATH:${HOME}/.spicetify"
 
+# ===============
+# fzf Integration
+# ===============
+
+# Default keybinds
+source <(fzf --zsh)
+
+# Use Bat for Fzf previewer
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
 # =============
 # Shell Options
 # =============
@@ -156,9 +169,6 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey '^H' backward-kill-word # Ctrl + Backspace to delete previous word
 bindkey '^[[Z' undo # Shift + Tab to undo last action
-
-# fzf Integration
-source <(fzf --zsh)
 
 # =======
 # Theming
