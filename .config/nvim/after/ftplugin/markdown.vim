@@ -79,6 +79,18 @@ endfunction
 " Alt+d to doodle
 nnoremap <A-d> :call InsertDrawing()<CR>
 
+" === Edit Gitlab Notes ===
+function! RunDaemonAndView()
+	let filename = expand('%:t')
+	let parent_dir = fnamemodify(expand('%:p:h'), ':t')
+	let html_file = "../public/" . parent_dir . "/" . substitute(filename, '\.md$', '.html', '')
+	let abs_html_file = fnamemodify(html_file, ':p')
+	call jobstart(['bash', '../daemon.sh'])
+	call jobstart(['xdg-open', abs_html_file])
+endfunction
+" Alt+e to edit
+nnoremap <A-e> :call RunDaemonAndView()<CR>
+
 " === Pandoc Integration ===
 " == Keymaps ==
 nnoremap <silent> <leader>pp :PandocMarkdownToPdf<CR>
