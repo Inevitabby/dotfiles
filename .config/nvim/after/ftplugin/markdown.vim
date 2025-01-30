@@ -47,10 +47,37 @@ nmap <A-s> diwi~~~~<ESC>hPE
 vmap <silent> <A-'> :call VisualMapping("'")<CR>
 imap <A-'> <ESC>diwi''<ESC>PEa
 nmap <A-'> diwi''<ESC>PE
-" Alt+" to double-quote
-vmap <silent> <A-"> :call VisualMapping("\"")<CR>
-imap <A-"> <ESC>diwi""<ESC>PEa
-nmap <A-"> diwi""<ESC>PE
+" Alt+q to double-quote
+vmap <silent> <A-q> :call VisualMapping("\"")<CR>
+imap <A-q> <ESC>diwi""<ESC>PEa
+nmap <A-q> diwi""<ESC>PE
+
+" === Insert Doodle ===
+function! InsertDrawing()
+	let image_dir = ".images"
+	" Ensure the directory exists
+	call mkdir(image_dir, "p")
+	" Find the next available image filename
+	let i = 0
+	let image_path = ''
+	while 1
+		let image_path = printf("%s/%02d.png", image_dir, i)
+		if !filereadable(image_path) && !isdirectory(image_path)
+			break
+		endif
+		let i += 1
+	endwhile
+	" Create a blank PNG file (requires ImageMagick)
+	execute "silent !magick convert -size 1080x1080 -depth 8 xc:none  " . fnameescape(image_path)
+	" Open KolourPaint to edit the new image
+	execute "silent !kolourpaint " . fnameescape(image_path)
+	" Trim unused space
+	execute "silent !magick convert " . fnameescape(image_path) . " -trim " . fnameescape(image_path)
+	" Insert the Markdown reference
+	call setline('.', '![](' . fnameescape(image_path) . ')')
+endfunction
+" Alt+d to doodle
+nnoremap <A-d> :call InsertDrawing()<CR>
 
 " === Pandoc Integration ===
 " == Keymaps ==
