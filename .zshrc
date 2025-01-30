@@ -21,6 +21,7 @@ prompt gentoo
 
 # Coreutils
 alias ls="eza"
+alias cat="bat"
 alias grep="grep --color=auto"
 alias diff="diff --color --side-by-side --minimal"
 alias cp="cp -i" # Confirm before overwriting something
