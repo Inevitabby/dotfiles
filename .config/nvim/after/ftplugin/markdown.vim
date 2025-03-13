@@ -61,7 +61,7 @@ function! InsertDrawing()
 	let i = 0
 	let image_path = ''
 	while 1
-		let image_path = printf("%s/%02d.png", image_dir, i)
+		let image_path = printf("%s/doodle_%02d.png", image_dir, i)
 		if !filereadable(image_path) && !isdirectory(image_path)
 			break
 		endif
@@ -86,6 +86,9 @@ function! RunDaemonAndView()
 	let html_file = "../public/" . parent_dir . "/" . substitute(filename, '\.md$', '.html', '')
 	let abs_html_file = fnamemodify(html_file, ':p')
 	call jobstart(['bash', '../daemon.sh'])
+	while !filereadable(abs_html_file)
+		sleep 0.1s
+	endwhile
 	call jobstart(['xdg-open', abs_html_file])
 endfunction
 " Alt+e to edit
