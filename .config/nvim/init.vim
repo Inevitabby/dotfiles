@@ -82,6 +82,8 @@ call plug#begin()
 	Plug 'tpope/vim-surround'
 	" Comment keymaps with treesitter integration
 	Plug 'numToStr/Comment.nvim'
+	" Highlight, jump. and resolve conflict markers
+	Plug 'rhysd/conflict-marker.vim'
 
 	" === Navigation ===
 	" Fuzzy finder (optional system deps: `fd` and `ripgrep`)
