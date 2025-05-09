@@ -39,9 +39,18 @@ EOF
 
 " nvim-lualine/lualine.nvim: Fugitive integration and show when recording a macro (using folke/noice.nvim api)
 lua << EOF
+	local function word_count()
+		if vim.bo.filetype ~= "vimwiki" then return "" end
+		local wc = vim.fn.wordcount()
+		return tostring(wc.words) .. " words"
+	end
 	require("lualine").setup({
 		extensions = { "fugitive" },
 		sections = {
+			lualine_c = {
+				{'filename'},
+				{word_count}
+			},
 			lualine_x = {
 				{
 					require("noice").api.statusline.mode.get,

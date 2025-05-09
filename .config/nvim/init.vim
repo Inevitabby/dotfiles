@@ -24,6 +24,7 @@ lua vim.loader.enable()
 let g:slowComputer = hostname() == "ThinkPad"
 
 call plug#begin()
+
 	" === Aesthetics ===
 	" Catppuccin color scheme
 	Plug 'catppuccin/nvim', { 'as': 'catppuccin', 'do': ':CatppuccinCompile' } 
