@@ -48,10 +48,6 @@ call plug#begin()
 		Plug 'MunifTanjim/nui.nvim'
 		" Notification manager
 		Plug 'rcarriga/nvim-notify'
-	" View LSP results easily
-	Plug 'folke/trouble.nvim'
-		" Toggle trouble with \t
-		nnoremap <silent> <leader>t <cmd>TroubleToggle<CR>
 
 	" === Export & Preview ===
 	" Preview markdown in-browser (note: use pre-built if you don't have node and yarn!)
