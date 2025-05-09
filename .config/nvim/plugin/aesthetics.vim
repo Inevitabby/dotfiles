@@ -17,22 +17,22 @@ lua << EOF
 				relativenumber = false, -- Hide relative numbers
 			}
 		},
-		plugins = {
-			twilight = { -- Don't start Twilight automatically
-				enabled = false 
-			}
-		},
-		-- Quit Neovim if quitting from ZenMode (based on: https://github.com/folke/zen-mode.nvim/issues/54#issuecomment-1200155414)
 		on_open = function(_)
+			-- Quit Neovim if quitting from ZenMode (based on: https://github.com/folke/zen-mode.nvim/issues/54#issuecomment-1200155414)
 			vim.cmd("cabbrev <buffer> q let b:quitFromZen = 1 <bar> q")
 			vim.cmd("cabbrev <buffer> wq let b:quitFromZen = 1 <bar> wq")
 			vim.cmd("cabbrev <buffer> x let b:quitFromZen = 1 <bar> x")
+			-- Disable highlighting in Zen mode
+			vim.opt.spell = false
 		end,
 		on_close = function()
+			-- Quit Neovim if quitting from ZenMode
 			if vim.b.quitFromZen == 1 then
 				vim.b.quitFromZen = 0
 				vim.cmd("q")
 			end
+			-- Reenable highlighting when leaving Zen mode
+			vim.opt.spell = true
 		end,
 	})
 EOF
