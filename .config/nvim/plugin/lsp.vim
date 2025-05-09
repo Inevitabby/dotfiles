@@ -1,14 +1,8 @@
-" VonHeikemen/lsp-zero.nvim: Setup LSP zero
+" mason-org/mason: Setup Mason
 lua <<EOF
-	local lsp = require("lsp-zero").preset({
-		manage_nvim_cmp = {
-			set_sources = "recommended"
-		}
-	})
-	lsp.on_attach(function(client, bufnr)
-		lsp.default_keymaps({buffer = bufnr})
-	end)
-	-- LanguageTool grammar check (uses neovim/nvim-lspconfig & williamboman/mason.nvim)
+	require('mason').setup()
+
+	-- LanguageTool grammar check
 	require("lspconfig").ltex.setup({
 		settings = {
 			ltex = {
@@ -40,7 +34,6 @@ lua <<EOF
 			}
 		}
 	});
-	lsp.setup()
 EOF
 
 " f3fora/cmp-spell: Add cmp dictionary source

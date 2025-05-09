@@ -142,11 +142,11 @@ call plug#begin()
 		nnoremap <silent> <leader>bl <Cmd>BufferOrderByLanguage<CR>
 		nnoremap <silent> <leader>bw <Cmd>BufferOrderByWindowNumber<CR>
 
-	" === LSP Zero ===
+	" === LSP ===
 	" == LSP Support ==
 	Plug 'neovim/nvim-lspconfig'
-	Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'}
-	Plug 'williamboman/mason-lspconfig.nvim'
+	Plug 'mason-org/mason.nvim'
+	" Plug 'mason-org/mason-lspconfig.nvim'
 	" == Autocompletion ==
 	Plug 'hrsh7th/nvim-cmp'
 	" Completions based on the current buffer
@@ -160,8 +160,6 @@ call plug#begin()
 	" == Snippet Engine ==
 	Plug 'L3MON4D3/LuaSnip'
 		Plug 'saadparwaiz1/cmp_luasnip'
-	" == LSP Zero ==
-	Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
 call plug#end()
 
 " ===================
