@@ -148,3 +148,10 @@ extraspection
 homeslice
 redux
 slapfights
+=== glsl ===
+shader
+shaders
+rasterization
+glsl
+gl_VertexID
+gl_InstanceID
