@@ -94,10 +94,11 @@ call plug#begin()
 		Plug 'nvim-lua/plenary.nvim' 
 		" - Replace default spell suggest menu with tiny Telescope modal
 		map <silent> z= :Telescope spell_suggest theme=cursor<cr>
+		map <silent> <leader>T :Telescope
 		" - Open live grep
 		noremap <silent> <leader>l :Telescope live_grep<CR>
-		" - Open file finder in current file's directory
-		noremap <silent> <leader>f :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
+		" - Open file finder in (1) the current Project, or (2) current file's directory [fallback]
+		noremap <silent> <leader>f :lua require('telescope.builtin').find_files({ cwd = (function() local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]; return vim.v.shell_error == 0 and git_root or vim.fn.expand('%:p:h') end)() })<CR>
 	" Edit filesystem like a buffer (netrw replacement)
 	Plug 'stevearc/oil.nvim'
 	" Integrate Vimwiki with Telescope
