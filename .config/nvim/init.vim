@@ -86,6 +86,8 @@ call plug#begin()
 	Plug 'rhysd/conflict-marker.vim'
 
 	" === Navigation ===
+	" FzF
+	Plug 'junegunn/fzf.vim'
 	" Fuzzy finder (optional system deps: `fd` and `ripgrep`)
 	Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 		" Function library for Telescope
