@@ -86,10 +86,8 @@ function! RunDaemonAndView()
 	let html_file = "../public/" . parent_dir . "/" . substitute(filename, '\.md$', '.html', '')
 	let abs_html_file = fnamemodify(html_file, ':p')
 	call jobstart(['bash', '../daemon.sh'])
-	while !filereadable(abs_html_file)
-		sleep 0.1s
-	endwhile
-	call jobstart(['xdg-open', abs_html_file])
+	let l:xdgHack = "call jobstart(['xdg-open', '" .. abs_html_file .. "'])"
+	call timer_start(3000, { tid -> execute(l:xdgHack) }) " HACK: Delay opening file to avoid opening a non-existent file
 endfunction
 " Alt+e to edit
 nnoremap <A-e> :call RunDaemonAndView()<CR>
