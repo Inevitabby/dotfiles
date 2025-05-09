@@ -60,6 +60,22 @@ alias whoogle-search="${HOME}/Scripts/venv/bin/whoogle-search"
 # Subliminal
 alias subliminal="${HOME}/Scripts/venv/bin/subliminal"
 
+# Git
+alias gitroot='cd $(git rev-parse --show-toplevel)'
+
+# Accept package
+alias accept_keyword='function _accept_keyword(){ 
+    local package="$1"
+    local package_name="${package##*/}"
+    local file="/etc/portage/package.accept_keywords/$package_name"
+    echo "$package" | sudo tee "$file" > /dev/null
+}; _accept_keyword'
+_accept_keyword_completions() {
+    compadd $(eix)
+}
+
+compdef _accept_keyword_completions accept_keyword
+
 # =======
 # Exports
 # =======
@@ -77,6 +93,9 @@ export GTK_USE_PORTAL=1
 
 # Spicetify
 export PATH="$PATH:${HOME}/.spicetify"
+
+# Cargo
+export PATH="$PATH:${HOME}/.cargo/bin"
 
 # ===============
 # fzf Integration
@@ -231,3 +250,4 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=244' # Use 256 colors and UNICODE
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
