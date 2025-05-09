@@ -149,6 +149,7 @@ call plug#begin()
 	" Plug 'mason-org/mason-lspconfig.nvim'
 	" == Autocompletion ==
 	Plug 'hrsh7th/nvim-cmp'
+	Plug 'windwp/nvim-ts-autotag'
 	" Completions based on the current buffer
 	Plug 'hrsh7th/cmp-buffer' 
 	" Completions based on the filesystem
