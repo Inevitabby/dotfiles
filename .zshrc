@@ -94,8 +94,9 @@ export GTK_USE_PORTAL=1
 # Spicetify
 export PATH="$PATH:${HOME}/.spicetify"
 
-# Cargo
+# Cargo and Go
 export PATH="$PATH:${HOME}/.cargo/bin"
+export PATH="$PATH:${HOME}/go/bin"
 
 # ===============
 # fzf Integration
