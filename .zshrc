@@ -26,8 +26,12 @@ alias grep="grep --color=auto"
 alias diff="diff --color --side-by-side --minimal"
 alias cp="cp -i" # Confirm before overwriting something
 
-# Portage
-alias update="sudo emerge --update --deep --newuse --verbose @world --keep-going --ask"
+# Portage (requires "permit nopass <user> cmd emerge" in /etc/doas.conf)
+alias emerge="doas emerge"
+alias update="doas emerge --update --deep --newuse --verbose @world --keep-going --ask"
+alias e="doas emerge"
+alias es="emerge --search" # (shorter + doesn't require lockfile like doas emerge --search)
+alias eq="equery"
 
 # nnn
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
