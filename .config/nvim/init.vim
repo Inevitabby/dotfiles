@@ -178,8 +178,8 @@ tnoremap <silent> <Esc> <C-\><C-n>:wincmd k<Bar>wincmd l<CR>
 tnoremap <silent> <F4> <C-\><C-n>
 " <Ctrl+l> to clear search highlights
 nnoremap <silent> <c-l> :nohl<cr><c-l>
-" <leader><space> to toggle focus on current line
-map <silent> <leader>tw :Twilight<CR>zz
+" <leader>t to toggle focus on current line
+map <silent> <leader>t :Twilight<CR>zz
 " <ctrl>s to save
 nnoremap <silent> <c-s> :update <Bar> echo "Saving"<CR>
 inoremap <silent> <c-s> <Esc>:update <Bar> echo "Saving"<CR>a
