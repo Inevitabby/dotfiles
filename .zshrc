@@ -25,8 +25,6 @@ alias cat="bat"
 alias grep="grep --color=auto"
 alias diff="diff --color --side-by-side --minimal"
 alias cp="cp -i" # Confirm before overwriting something
-alias df="df -h" # Human-readable sizes
-alias free='free -m' # Show sizes in MB
 
 # Portage
 alias update="sudo emerge --update --deep --newuse --verbose @world --keep-going --ask"
