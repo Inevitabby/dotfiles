@@ -8,13 +8,26 @@
 user_pref("browser.startup.page", 3);
 user_pref("browser.sessionstore.privacy_level", 0);
 
-/* Don't clear cookies, cache, history, or sessions ***/
-user_pref("privacy.clearOnShutdown.cookies", false);
+/* Don't clear cookies, cache, history, or sessions on shutdown ***/
+user_pref("privacy.clearHistory.cache", false);
+user_pref("privacy.clearHistory.historyFormDataAndDownloads", false);
 user_pref("privacy.clearOnShutdown.cache", false);
+user_pref("privacy.clearOnShutdown.cookies", false);
 user_pref("privacy.clearOnShutdown.downloads", false);
+user_pref("privacy.clearOnShutdown.formdata", false);
 user_pref("privacy.clearOnShutdown.history", false);
+user_pref("privacy.clearOnShutdown.offlineApps", false);
 user_pref("privacy.clearOnShutdown.sessions", false);
+user_pref("privacy.clearOnShutdown_v2.cache", false);
+user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
+user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
+user_pref("privacy.clearSiteData.cache", false);
+user_pref("privacy.clearSiteData.historyFormDataAndDownloads", false);
+user_pref("privacy.cpd.cache", false);
+user_pref("privacy.cpd.formdata", false);
 user_pref("privacy.cpd.history", false);
+user_pref("privacy.cpd.sessions", false);
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 
 /* Enable search through location bar ***/
 user_pref("keyword.enabled", true);
