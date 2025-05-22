@@ -168,25 +168,37 @@ call plug#end()
 " Non-Plugin Mappings
 " ===================
 
-" <F4> to open a nobuflisted terminal in a split at the bottom of screen cd'ed to the current file's directory (based on https://vi.stackexchange.com/a/14533)
+" f4: Open terminal in a bottom split (src: https://vi.stackexchange.com/a/14533)
 noremap <silent> <F4> :let $VIM_DIR=expand('%:p:h')<CR>:bot split<Bar>:exe "resize " . (winheight(0) * 2/5)<Bar>:term<CR>cd $VIM_DIR && clear<CR>
-" <F9> to open vertical split to the left with Oil
-noremap <silent> <F9> :vnew<Bar>:exe "vert resize " . (winwidth(0) * 2/5)<Bar>:Oil<CR>
-" <Esc> to leave terminal and change window focus
-tnoremap <silent> <Esc> <C-\><C-n>:wincmd k<Bar>wincmd l<CR>
-" <F4> to leave terminal without changing window focus
+" f4 in terminal: Leave terminal without changing window focus
 tnoremap <silent> <F4> <C-\><C-n>
-" <Ctrl+l> to clear search highlights
+
+" f9: Open stevearc/oil.nvim in vertical split
+noremap <silent> <F9> :vnew<Bar>:exe "vert resize " . (winwidth(0) * 2/5)<Bar>:Oil<CR>
+
+" esc: to leave terminal and change window focus
+tnoremap <silent> <Esc> <C-\><C-n>:wincmd k<Bar>wincmd l<CR>
+
+" ctrl+l: to clear search highlights
 nnoremap <silent> <c-l> :nohl<cr><c-l>
-" <leader>t to toggle focus on current line
+
+" leader+t: to toggle focus on current line
 map <silent> <leader>t :Twilight<CR>zz
-" <ctrl>s to save
+
+" ctrl+s: to save
 nnoremap <silent> <c-s> :update <Bar> echo "Saving"<CR>
 inoremap <silent> <c-s> <Esc>:update <Bar> echo "Saving"<CR>a
-" <ctrl>f in insert-mode to fix previous word (https://web.archive.org/web/20231225131145/https://castel.dev/post/lecture-notes-1/#correcting-spelling-mistakes-on-the-fly)
+
+" ctrl+f: in insert-mode to fix previous word (https://web.archive.org/web/20231225131145/https://castel.dev/post/lecture-notes-1/#correcting-spelling-mistakes-on-the-fly)
 inoremap <silent> <C-f> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-" HACK: Map ZZ and ZQ to their equivalent commands so that abbreviations for :x and :q also apply to them
+" leader+y / <leader>p: Yank and paste with system clipboard
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+
+" ZZ / ZQ: Hack to :x and :q so that abbreviations apply to them too
 map <silent> ZZ :x<CR>
 map <silent> ZQ :q!<CR>
 
@@ -210,7 +222,7 @@ autocmd TermClose * execute "bdelete! " . expand("<abuf>")
 " ====
 
 " :W to Write as Sudo
-" Based on https://vi.stackexchange.com/a/25038
+" https://vi.stackexchange.com/a/25038
 com -bar W exe 'w !pkexec tee >/dev/null %:p:S' | setl nomod
 com -bar Wq exe 'W' | quit
 
@@ -263,7 +275,6 @@ set spellfile=~/.config/nvim/spell/en.utf-8.add
 
 " System Integration
 set autoread " Read file if changed
-set clipboard=unnamedplus " Use system keyboard
 set shell=/bin/zsh " Use zsh instead of bash in :terminal
 
 " Save undo files ~/.cache/nvim/undo
