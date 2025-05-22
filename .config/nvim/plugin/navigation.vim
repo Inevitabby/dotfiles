@@ -23,6 +23,13 @@ lua << EOF
 	})
 EOF
 
+" andymass/vim-matchup: Performance tweaks
+let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_timeout = 100
+let g:matchup_matchparen_insert_timeout = 30
+let g:matchup_matchparen_stopline = 200
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+
 " netrw: Disable Netrw. Too many bugs :(
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
