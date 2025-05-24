@@ -1,6 +1,7 @@
 " nvim-treesitter/nvim-treesitter: Enable modules
 lua << EOF
 	require("nvim-treesitter.configs").setup({
+		ensure_installed = { "markdown_inline" }, -- required: auto_install misses parser needed for small help popup
 		auto_install = true,
 		highlight = { 
 			enable = true,
