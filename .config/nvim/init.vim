@@ -89,6 +89,8 @@ call plug#begin()
 	" === Navigation ===
 	" FzF
 	Plug 'junegunn/fzf.vim'
+	" LSP Diagnotics viewer
+	Plug 'folke/trouble.nvim'
 	" Fuzzy finder (optional system deps: `fd` and `ripgrep`)
 	Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 		" Function library for Telescope
@@ -147,7 +149,7 @@ call plug#begin()
 	" == LSP Support ==
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'mason-org/mason.nvim'
-	" Plug 'mason-org/mason-lspconfig.nvim'
+	Plug 'mason-org/mason-lspconfig.nvim'
 	" == Autocompletion ==
 	Plug 'hrsh7th/nvim-cmp'
 	Plug 'windwp/nvim-ts-autotag'
@@ -176,16 +178,19 @@ tnoremap <silent> <F4> <C-\><C-n>
 " f9: Open stevearc/oil.nvim in vertical split
 noremap <silent> <F9> :vnew<Bar>:exe "vert resize " . (winwidth(0) * 2/5)<Bar>:Oil<CR>
 
-" esc: to leave terminal and change window focus
+" esc: leave terminal and change window focus
 tnoremap <silent> <Esc> <C-\><C-n>:wincmd k<Bar>wincmd l<CR>
 
-" ctrl+l: to clear search highlights
+" ctrl+l: clear search highlights
 nnoremap <silent> <c-l> :nohl<cr><c-l>
 
-" leader+t: to toggle focus on current line
-map <silent> <leader>t :Twilight<CR>zz
+" leader+t: toggle LSP diagnostics window
+map <silent> <leader>t :Trouble diagnostics toggle<CR>
 
-" ctrl+s: to save
+" leader+tw: toggle focus on current line
+map <silent> <leader>tw :Twilight<CR>zz
+
+" ctrl+s: save
 nnoremap <silent> <c-s> :update <Bar> echo "Saving"<CR>
 inoremap <silent> <c-s> <Esc>:update <Bar> echo "Saving"<CR>a
 

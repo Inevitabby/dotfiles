@@ -1,6 +1,9 @@
 " mason-org/mason: Setup Mason
 lua <<EOF
 	require('mason').setup()
+	require("mason-lspconfig").setup {
+		automatic_enable = true
+	}
 
 	-- LanguageTool grammar check
 	require("lspconfig").ltex.setup({
