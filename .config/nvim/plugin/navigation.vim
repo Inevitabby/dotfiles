@@ -1,3 +1,6 @@
+" folke/trouble.nvim: LSP diagnostic window
+lua require("trouble").setup()
+
 " nvim-telescope: Setup and load extensions
 lua << EOF
 	require("telescope").setup{
