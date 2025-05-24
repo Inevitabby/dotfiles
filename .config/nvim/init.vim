@@ -199,9 +199,11 @@ inoremap <silent> <C-f> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " leader+y / <leader>p: Yank and paste with system clipboard
 nnoremap <leader>y "+y
-vnoremap <leader>y "+y
+xnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+xnoremap <leader>p "+p
+xnoremap <leader>P "+P
 
 " ZZ / ZQ: Hack to :x and :q so that abbreviations apply to them too
 map <silent> ZZ :x<CR>
