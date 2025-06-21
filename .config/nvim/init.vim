@@ -87,11 +87,9 @@ call plug#begin()
 	Plug 'rhysd/conflict-marker.vim'
 
 	" === Navigation ===
-	" FzF
-	Plug 'junegunn/fzf.vim'
 	" LSP Diagnotics viewer
 	Plug 'folke/trouble.nvim'
-	" Fuzzy finder (optional system deps: `fd` and `ripgrep`)
+	" File Filter/Pick/Preview (optional system deps: `fd` and `ripgrep`)
 	Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 		" Function library for Telescope
 		Plug 'nvim-lua/plenary.nvim' 
@@ -100,9 +98,10 @@ call plug#begin()
 		map <silent> <leader>T :Telescope
 		" - Open live grep
 		noremap <silent> <leader>l :Telescope live_grep<CR>
-		" - Open file finder in (1) the current Project, or (2) current file's directory [fallback]
-		noremap <silent> <leader>f :lua require('telescope.builtin').find_files({ cwd = (function() local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]; return vim.v.shell_error == 0 and git_root or vim.fn.expand('%:p:h') end)() })<CR>
-	" Edit filesystem like a buffer (netrw replacement)
+	" Fuzzy finder
+	Plug 'junegunn/fzf.vim'
+		noremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
+	" No learning-curve filesystem editor (netrw replacement)
 	Plug 'stevearc/oil.nvim'
 	" Integrate Vimwiki with Telescope
 	Plug 'ElPiloto/telescope-vimwiki.nvim'
