@@ -71,7 +71,7 @@ call plug#begin()
 	Plug 'preservim/vim-wordy', { 'for': 'markdown' }
 
 	" === Coding ===
-	" Better highlighting
+	" Better highlighting (may need dep: dev-util/tree-sitter-cli for LSP)
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 	" Git integration. (Most notable is ':G' for arbitrary git commands)
 	Plug 'tpope/vim-fugitive' 
@@ -103,15 +103,15 @@ call plug#begin()
 		noremap <silent> <leader>f :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'<CR>
 	" No learning-curve filesystem editor (netrw replacement)
 	Plug 'stevearc/oil.nvim'
-	" Integrate Vimwiki with Telescope
+	" Knowledge management blah blah blah (I just like the markdown features)
 	Plug 'ElPiloto/telescope-vimwiki.nvim'
 		" - \vw to search filenames
 		nnoremap <silent> <leader>vw <cmd>lua require("telescope").extensions.vimwiki.vimwiki()<cr>
 		" - \vg to live grep files
 		nnoremap <silent> <leader>vg <cmd>lua require("telescope").extensions.vimwiki.live_grep()<cr>
-	" Integration undo tree with Telescope (:Telescope undo)
+	" Integrate undo tree with Telescope (:Telescope undo)
 	Plug 'debugloop/telescope-undo.nvim'
-	" Extend "%" to language-specific words (uses TreeSitter)
+	" Extend "%" to language-specific words (req: TreeSitter)
 	Plug 'andymass/vim-matchup'
 	" Tabline
 	Plug 'romgrk/barbar.nvim'
