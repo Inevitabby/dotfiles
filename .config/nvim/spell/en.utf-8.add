@@ -107,6 +107,7 @@ uid
 unics
 usr
 vimscript
+virtualization
 wc
 wildcard
 wildcards
@@ -155,3 +156,9 @@ rasterization
 glsl
 gl_VertexID
 gl_InstanceID
+=== japan ===
+gachapon
+ginza
+harajuku
+nakano
+uniqlo
