@@ -52,6 +52,58 @@ vmap <silent> <A-q> :call VisualMapping("\"")<CR>
 imap <A-q> <ESC>diwi""<ESC>PEa
 nmap <A-q> diwi""<ESC>PE
 
+" === Fold Example Blockquotes ===
+" (An example blockquote is a blockquote that starts with `> **Example**: `)
+" foldexpr function
+function! MarkdownBlockquoteFolds() abort
+	let line = getline(v:lnum)
+	let next_line = getline(v:lnum + 1)
+	" Start of blockquote
+	if line =~ '^> \*\*Example\*\*: '
+		return '>1'
+	" Continue existing fold
+	elseif (line =~ '^>\|^$') && MarkdownInBlockquoteFold(v:lnum)
+		if next_line !~ '^>'
+			return '<1'  " End fold
+		else
+			return '1'   " Continue fold
+		endif
+	endif
+	return '='
+endfunction
+" Helper to detect blockquote context
+function! MarkdownInBlockquoteFold(lnum) abort
+	let i = a:lnum - 1
+	while i > 0 && (getline(i) =~ '^>\|^$')
+		if getline(i) =~ '^> \*\*Example\*\*: '
+			return 1
+		endif
+		let i -= 1
+	endwhile
+	return 0
+endfunction
+" Custom foldtext
+function! MarkdownFoldText() abort
+	let first = getline(v:foldstart)
+	let count = v:foldend - v:foldstart + 1
+	if first =~ '^> \*\*Example\*\*: '
+		return first . ' (' . count . ' lines)'
+	endif
+	return substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g') . ' (' . count . ' lines)'
+endfunction
+" Autocmd
+augroup MarkdownFolds
+  autocmd!
+  autocmd FileType vimwiki setlocal foldmethod=expr foldexpr=MarkdownBlockquoteFolds() foldtext=MarkdownFoldText()
+augroup END
+
+" === Color Blockquotes ===
+augroup VimwikiBlockquoteHighlight
+	autocmd!
+	autocmd FileType vimwiki syntax match VimwikiBlockquote /^>\s*/ containedin=ALL
+				\ | highlight default link VimwikiBlockquote @markup.list
+augroup END
+
 " === Insert Doodle ===
 function! InsertDrawing()
 	let image_dir = ".images"
