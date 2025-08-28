@@ -45,6 +45,9 @@ user_pref("browser.cache.disk.enable", true);
 /* Disable Letterboxing ***/
 user_pref("privacy.resistFingerprinting.letterboxing", false);
 
+/* Enable Web GL ***/
+user_pref("webgl.disabled", false);
+
 //  === Further Hardening ===
 
 /* Don't save passwords **/
