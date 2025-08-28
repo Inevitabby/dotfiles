@@ -12,4 +12,4 @@ let g:vimwiki_custom_wiki2html=$HOME."/.config/nvim/pandoc/vimwiki_converter.sh"
 " Disable bullet-point mappings (conflicts with dkarter/bullet.vim)
 let g:vimwiki_key_mappings = { "lists": 0 }
 " Enable folding
-let g:vimwiki_folding="syntax:quick"
+let g:vimwiki_folding="custom"
