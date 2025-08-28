@@ -15,9 +15,9 @@ compinit
 promptinit
 prompt gentoo
 
-# =======
-# Aliases
-# =======
+# =====================
+# Aliases and Functions
+# =====================
 
 # Coreutils
 alias ls="eza"
@@ -28,15 +28,24 @@ alias cp="cp -i" # Confirm before overwriting something
 
 # Portage (requires "permit nopass <user> cmd emerge" in /etc/doas.conf)
 alias emerge="doas emerge"
-alias update="doas emerge --update --deep --newuse --verbose @world --keep-going --ask"
 alias e="doas emerge"
 alias es="emerge --search" # (shorter + doesn't require lockfile like doas emerge --search)
 alias eq="equery"
 
+# Update (Update, Rebuild, and Depclean)
+update() {
+	echo "Running update [1/3]"
+	e --update --deep --newuse --verbose @world --keep-going --ask --backtrack=1000
+	echo "Running preserved-rebuild [2/3]"
+	e @preserved-rebuild
+	echo "Running depclean [3/3]"
+	e --depclean
+}
+
 # nnn
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
 alias notes="nnn ${HOME}/Sync/Notes/Personal" # ... in my [personal] notes directory
-alias school="nnn '${HOME}/Sync/Notes/School/Fall 2024'" # ... in my school directory
+alias school="nnn '${HOME}/Sync/Notes/School/Fall 2025'" # ... in my school directory
 alias gitlab="cd '${HOME}/Scripts/Gitlab/notes/'; git pull; nnn .; git status" # ... in my Gitlab notes directory
 alias scripts="nnn '${HOME}/Scripts'" # ... in my scripts directory
 
@@ -62,8 +71,14 @@ alias whoogle-search="${HOME}/Scripts/venv/bin/whoogle-search"
 # Subliminal
 alias subliminal="${HOME}/Scripts/venv/bin/subliminal"
 
+# Personal Translation Script
+alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/translate"
+
 # Git
 alias gitroot='cd $(git rev-parse --show-toplevel)'
+
+# Zola
+alias zola="flatpak run org.getzola.zola"
 
 # Accept package
 alias accept_keyword='function _accept_keyword(){ 
@@ -89,6 +104,7 @@ export PATH="$PNPM_HOME:$PATH"
 # Neovim as default editor
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+export NVIM_LSP_LOG_FILE=/tmp/nvim-lsp.log
 
 # Prefer Dolphin Filepicker over GNOME (maybe this should be a global environment variable? or maybe that would create problems...)
 export GTK_USE_PORTAL=1
