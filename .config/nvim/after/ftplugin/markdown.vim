@@ -133,13 +133,16 @@ nnoremap <A-d> :call InsertDrawing()<CR>
 
 " === Edit Gitlab Notes ===
 function! RunDaemonAndView()
-	let filename = expand('%:t')
-	let parent_dir = fnamemodify(expand('%:p:h'), ':t')
-	let html_file = "../public/" . parent_dir . "/" . substitute(filename, '\.md$', '.html', '')
-	let abs_html_file = fnamemodify(html_file, ':p')
-	call jobstart(['bash', '../daemon.sh'])
-	let l:xdgHack = "call jobstart(['xdg-open', '" .. abs_html_file .. "'])"
-	call timer_start(3000, { tid -> execute(l:xdgHack) }) " HACK: Delay opening file to avoid opening a non-existent file
+	" Get paths
+	let l:file_dir = expand('%:p:h')
+	let l:filename = expand('%:t')
+	let l:parent_dir_name = fnamemodify(l:file_dir, ':t')
+	let l:html_filename = substitute(l:filename, '\.md$', '.html', '')
+	let l:html_file_abs = fnamemodify(l:file_dir . '/../public/' . l:parent_dir_name . '/' . l:html_filename, ':p')
+	" Run daemon and open output
+	call jobstart(['bash', fnamemodify(l:file_dir . '/../daemon.sh', ':p')])
+	let l:xdg_cmd = "call jobstart(['xdg-open', '" . l:html_file_abs . "'])"
+	call timer_start(3000, {-> execute(l:xdg_cmd)})
 endfunction
 " Alt+e to edit
 nnoremap <A-e> :call RunDaemonAndView()<CR>
