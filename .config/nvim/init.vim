@@ -21,7 +21,7 @@ let g:mapleader = "\<Space>"
 lua vim.loader.enable()
 
 " Flag to modify plugins for my slow laptop
-let g:slowComputer = hostname() == "ThinkPad"
+let g:slowComputer = hostname() == "Pavilion"
 
 call plug#begin()
 

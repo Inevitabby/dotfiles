@@ -139,8 +139,12 @@ function! RunDaemonAndView()
 	let l:parent_dir_name = fnamemodify(l:file_dir, ':t')
 	let l:html_filename = substitute(l:filename, '\.md$', '.html', '')
 	let l:html_file_abs = fnamemodify(l:file_dir . '/../public/' . l:parent_dir_name . '/' . l:html_filename, ':p')
-	" Run daemon and open output
+	" Start daemon
 	call jobstart(['bash', fnamemodify(l:file_dir . '/../daemon.sh', ':p')])
+	" Open output file
+	if !empty($SSH_CONNECTION) || !empty($SSH_TTY) " Skip if SSH session
+		return
+	endif
 	let l:xdg_cmd = "call jobstart(['xdg-open', '" . l:html_file_abs . "'])"
 	call timer_start(3000, {-> execute(l:xdg_cmd)})
 endfunction
