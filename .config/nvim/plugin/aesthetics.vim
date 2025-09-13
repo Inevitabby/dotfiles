@@ -17,6 +17,11 @@ lua << EOF
 				relativenumber = false, -- Hide relative numbers
 			}
 		},
+		plugins = {
+			twilight = {
+				enabled = not vim.g.slowComputer,
+			}
+		},
 		on_open = function(_)
 			-- Quit Neovim if quitting from ZenMode (based on: https://github.com/folke/zen-mode.nvim/issues/54#issuecomment-1200155414)
 			vim.cmd("cabbrev <buffer> q let b:quitFromZen = 1 <bar> q")
@@ -108,8 +113,8 @@ EOF
 " rcarriga/nvim-notify: Set style, timeout, and load Telescope extension
 lua << EOF
 	require("notify").setup({
-		render = "compact",
-		stages = "slide",
+		render = "compact", 
+		stages = vim.g.slowComputer and "static" or "slide",
 		timeout = 2500,
 	})
 	require("telescope").load_extension("notify") 

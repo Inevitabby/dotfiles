@@ -1,5 +1,7 @@
 " folke/twilight.nvim: Change highlight settings to be less ass for prose
-lua require("twilight").setup({ dimming = { alpha = 0.5 }, context = 0, expand = { "paragraph", "fenced_code_block", "list" } })
+if !g:slowComputer
+	lua require("twilight").setup({ dimming = { alpha = 0.5 }, context = 0, expand = { "paragraph", "fenced_code_block", "list" } })
+endif
 
 " === Markdown Syntax Keymaps ===
 " == Utility Functions ==
