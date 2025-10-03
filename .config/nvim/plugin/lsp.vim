@@ -6,7 +6,7 @@ lua <<EOF
 	}
 
 	-- LanguageTool grammar check
-	require("lspconfig").ltex.setup({
+	vim.lsp.config("ltex", {
 		settings = {
 			ltex = {
 				enabled = { "latex", "tex", "bib", "markdown", "vimwiki" },
@@ -39,9 +39,18 @@ lua <<EOF
 	});
 EOF
 
+" hrsh7th/nvim-cmp: Add keymappings
 " f3fora/cmp-spell: Add cmp dictionary source
 lua <<EOF
-require("cmp").setup({
+local cmp = require("cmp");
+cmp.setup({
+	mapping = cmp.mapping.preset.insert({
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	}),
 	sources = {
 		{
 			name = "nvim_lsp"
