@@ -72,6 +72,7 @@ cwd
 cybersecurity
 disjunction
 eof
+fcfs
 fhs
 filesystem
 filesystems
@@ -100,6 +101,7 @@ pid
 posix
 pseudocode
 replit
+sjf
 stty
 trix
 txt
@@ -149,6 +151,7 @@ extraspection
 homeslice
 redux
 slapfights
+todo
 === glsl ===
 shader
 shaders
