@@ -17,4 +17,9 @@ lua << EOF
 EOF
 
 " numToStr/Comment.nvim: Setup
-lua require('Comment').setup()
+lua << EOF
+	require("Comment").setup()
+	-- Use HTML commenting on Vimiwki pages
+	local ft = require("Comment.ft")
+	ft.set("vimwiki", ft.get("html"))
+EOF
