@@ -47,6 +47,7 @@ alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
 alias notes="nnn ${HOME}/Sync/Notes/Personal" # ... in my [personal] notes directory
 alias school="nnn '${HOME}/Sync/Notes/School/Fall 2025'" # ... in my school directory
 alias gitlab="cd '${HOME}/Scripts/Gitlab/notes/'; git pull; nnn .; git status" # ... in my Gitlab notes directory
+alias gl="gitlab"
 alias scripts="nnn '${HOME}/Scripts'" # ... in my scripts directory
 
 # Quick Notes
@@ -76,6 +77,7 @@ alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/transl
 
 # Git
 alias gitroot='cd $(git rev-parse --show-toplevel)'
+alias g="git"
 
 # Zola
 alias zola="flatpak run org.getzola.zola"
