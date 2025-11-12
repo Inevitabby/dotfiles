@@ -7,12 +7,14 @@ lua <<EOF
 
 	-- LanguageTool grammar check
 	vim.lsp.config("ltex", {
+		cmd = { "env", "_JAVA_OPTIONS=-Djdk.xml.totalEntitySizeLimit=2500000 -Djdk.xml.entityExpansionLimit=2500000", "ltex-ls" },
 		settings = {
 			ltex = {
 				enabled = { "latex", "tex", "bib", "markdown", "vimwiki" },
 				language = "en-US",
-				-- completionEnabled = true,
-				sentenceCacheSize = 4000,
+				languageToolHttpServerUri = "http://lily:8081", -- (see: ~/.config/LanguageTool/)
+				completionEnabled = true,
+				-- sentenceCacheSize = 4000,
 				additionalRules = {
 					enablePickyRules = true,
 					motherTongue = "en-US",
