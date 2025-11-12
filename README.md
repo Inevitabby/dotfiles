@@ -47,20 +47,26 @@ Be careful about copying over things at random. For example, copying over my git
 
 ![Screenshot of my desktop with an impractical number of windows open to showcase my tiling setup](./.config/yadm/images/01.webp)
 
+<div align="center"><i>(NOTE: This screenshot has not been updated in forever, the list below is up-to-date, though)</i></div>
+
 As you can see, my desktop isn't that complicated, which is kinda the point. It's so not-complicated that uploading my human-unreadable KDE and KWin config would've been more complicated than just making this list:
 1. **Desktop Environment**: KDE
-2. **Window Manager:** KWin + Bismuth
+2. **Window Manager:** KWin + [Krohnkite (fork)](https://github.com/anametologin/krohnkite)
 3. **Global Theme:**
 	- **Plasma & Application Style:** Breeze
-	- **Colors:** Catppuccin Mocha
-	- **Window Decorations:** Bismuth
+	- **Colors:** Catppuccin Mocha Rosewater
+	- **Window Decorations:** Breeze
 	- **Fonts:**
 		- **General / Small / Toolbar / Menu / Window Title:** Noto Sans
 		- **Fixed Width:** JetBrainsMono Nerd Font Mono
-	- **Icons:** Tela (Dark)
-	- **Cursors:** Adwaita
+	- **Icons:** [Yet Another Monochrome](https://store.kde.org/p/2303161)
+	- **Cursors:** [Bibata Modern Ice](https://store.kde.org/p/1197198)
 	- **Splash Screen:** None
-4. **Wallpaper:** `#1e1e2e`
+4. **Wallpaper:** [`Rojica_1e1e2e`](./.config/yadm/images/Rojica_1e1e2e.png)
+
+> **Misc. Ricing Notes:**
+> - Desktop Effects: [Geometry Change](https://store.kde.org/p/2136283) *(and many other effects)*
+> - KWin Scripts: [Full Opacity Fullscreen](https://store.kde.org/p/2316974) *(combined with a window rule to make all windows 85% opaque)*
 
 # Greatest Hits
 
