@@ -34,11 +34,13 @@ alias eq="equery"
 
 # Update (Update, Rebuild, and Depclean)
 update() {
-	echo "Running update [1/3]"
+	echo "Running update [1/4]"
 	e --update --deep --newuse --verbose @world --keep-going --ask --backtrack=1000
-	echo "Running preserved-rebuild [2/3]"
+	echo "Running preserved-rebuild [2/4]"
 	e @preserved-rebuild
-	echo "Running depclean [3/3]"
+	echo "Running module-rebuild [3/4]"
+	e @module-rebuild
+	echo "Running depclean [4/4]"
 	e --depclean
 }
 
