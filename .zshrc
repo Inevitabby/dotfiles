@@ -84,6 +84,9 @@ alias g="git"
 # Zola
 alias zola="flatpak run org.getzola.zola"
 
+# Clipboard
+alias clip="xsel -b"
+
 # Accept package
 alias accept_keyword='function _accept_keyword(){ 
     local package="$1"
