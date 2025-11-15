@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+day_of_week=$(date +%u)
+if [ $((day_of_week % 2)) -eq 0 ]; then
+	sudo emaint sync -a
+	echo "Every-other-day sync ran" >> /tmp/dailySyncRanCronFlag
+fi

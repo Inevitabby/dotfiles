@@ -1,0 +1,80 @@
+#!/bin/env bash
+
+# Kernel parameters
+printf "[1/2] Applying kernel parameters...\n"
+echo '1500' > '/proc/sys/vm/dirty_writeback_centisecs'
+echo '0' > '/proc/sys/kernel/nmi_watchdog'
+
+# Helper: Enable power management for a device path
+enable_pm() {
+	# GUARD: No runtime PM
+	[[ -w "$1/power/control" ]] || return 1
+
+	# Enable PM
+	echo 'auto' > "$1/power/control"
+	printf " [%s] Enabled PM for %s\n" "$2" "$3"
+	return 0
+}
+
+# Enable power management for USB device by its product name
+enable_usb_pm() {
+	local -r PRODUCT_NAME="$1"
+	for dev_path in /sys/bus/usb/devices/*; do
+		# GUARD: Missing product file
+		[[ -f "$dev_path/product" ]] || continue	
+
+		# If product name matches, then enable PM
+		grep -qxF "$PRODUCT_NAME" "$dev_path/product" 2>/dev/null || continue
+		enable_pm "$dev_path" "USB" "'$PRODUCT_NAME'" && return
+	done
+}
+
+# Enables power management for all PCI devices using a specific driver
+enable_pci_pm() {
+	local -r DRIVER_NAME="$1"
+	for dev_path in /sys/bus/pci/devices/*; do
+		# GUARD: Missing driver symlink
+		[[ -e "$dev_path/driver" ]] || continue		
+
+		# If driver name matches, then enable PM
+		[[ "$(basename "$(readlink -f "$dev_path/driver")")" == "$DRIVER_NAME" ]] || continue
+		enable_pm "$dev_path" "PCI" "device with driver '$DRIVER_NAME' ($(basename "$dev_path"))"
+
+		# SPECIAL: Also enable PM for any child SATA ports
+		for port_path in "$dev_path"/ata*; do
+			[[ -d "$port_path" ]] || continue
+			local port_name=$(basename "$port_path")
+			enable_pm "$port_path" "SATA" "port '$port_name' on PCI device '$(basename "$dev_path")'"
+		done
+	done
+}
+
+# Enables power management for block device by its model name (prefix)
+#  (uses prefix because name is truncated. if you want accuracy, use lsblk. im lazy though)
+enable_block_pm() {
+	local -r MODEL_PREFIX="$1"
+	for model_file in /sys/block/sd*/device/model; do
+		# GUARD: Doesn't match prefix 
+		grep -q "^${MODEL_PREFIX}" "$model_file" 2>/dev/null || continue
+
+		# Enable PM
+		enable_pm "$(dirname "$model_file")" "Block" "device matching prefix '$MODEL_PREFIX'" && return
+	done
+}
+
+printf "[2/2] Applying power management settings...\n"
+
+# === USB Devices ===
+enable_usb_pm "USB DEVICE"	# SONiX Webcam
+enable_usb_pm "Elements 2621"	# External Drive
+
+# === PCI Devices ===
+enable_pci_pm "ahci"    	# Intel SATA Controller
+enable_pci_pm "nvme"    	# Sandisk NVMe SSD Controller
+enable_pci_pm "iwlwifi" 	# Intel WiFi Controller
+
+# === Block Devices (SATA HDDs) ===
+enable_block_pm "WDC WD10EZEX-75W"
+enable_block_pm "WDC WD30EZRX-00M"
+
+echo "[2/2] Finished."

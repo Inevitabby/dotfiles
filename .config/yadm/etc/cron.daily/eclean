@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo eclean-kernel --num 1
+sudo eclean-dist
+echo "Daily eclean ran!" >> /tmp/dailyEcleanFlag
