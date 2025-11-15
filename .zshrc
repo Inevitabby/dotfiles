@@ -38,10 +38,10 @@ update() {
 	e --update --deep --newuse --verbose @world --keep-going --ask --backtrack=1000
 	echo "Running preserved-rebuild [2/4]"
 	e @preserved-rebuild
-	echo "Running module-rebuild [3/4]"
-	e @module-rebuild
-	echo "Running depclean [4/4]"
+	echo "Running depclean [3/4]"
 	e --depclean
+	echo "Running module-rebuild [4/4]"
+	e @module-rebuild
 }
 
 # nnn
