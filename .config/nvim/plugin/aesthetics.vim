@@ -49,7 +49,17 @@ lua << EOF
 		local wc = vim.fn.wordcount()
 		return tostring(wc.words) .. " words"
 	end
-	require("lualine").setup({
+	local theme = require("lualine.themes.16color")
+	for _, mode_config in pairs(theme) do
+		for _, section_config in pairs(mode_config) do
+			section_config.bg = "#1e1e2e"
+		end
+	end
+	local options = {
+		icons_enabled = false,
+		-- component_separators = "",
+		section_separators = "",
+		theme = theme,
 		extensions = { "fugitive" },
 		sections = {
 			lualine_c = {
@@ -64,7 +74,8 @@ lua << EOF
 				}
 			},
 		}
-	})
+	}
+	require("lualine").setup({ options = options })
 EOF
 
 " folke/noice.nvim: Setup
