@@ -1,0 +1,211 @@
+{
+  "version": "2.1.1",
+  "menus": [
+    {
+      "root": {
+        "type": "submenu",
+        "name": "PokeMMO",
+        "icon": "🐶",
+        "iconTheme": "emoji",
+        "children": [
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "KeyZ",
+              "delayed": true
+            },
+            "name": "Bike",
+            "icon": "259.png",
+            "iconTheme": "pokemmo"
+          },
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "KeyM",
+              "delayed": true
+            },
+            "name": "Map",
+            "icon": "361.png",
+            "iconTheme": "pokemmo"
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Battle",
+            "icon": "5001.png",
+            "iconTheme": "pokemmo",
+            "children": [
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "Digit1",
+                  "delayed": true
+                },
+                "name": "Simulate Hotkey",
+                "icon": "5003.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "Digit2",
+                  "delayed": true
+                },
+                "name": "Simulate Hotkey",
+                "icon": "5002.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyL",
+                  "delayed": true
+                },
+                "name": "Simulate Hotkey",
+                "icon": "5015.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyR",
+                  "delayed": true
+                },
+                "name": "Simulate Hotkey",
+                "icon": "5013.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyZ",
+                  "delayed": true
+                },
+                "name": "Simulate Hotkey",
+                "icon": "5004.png",
+                "iconTheme": "pokemmo"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Consume",
+            "icon": "5079.png",
+            "iconTheme": "pokemmo",
+            "children": [
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyL",
+                  "delayed": true
+                },
+                "name": "Lure",
+                "icon": "lure.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "Digit2",
+                  "delayed": true
+                },
+                "name": "Defog",
+                "icon": "defog.png",
+                "iconTheme": "pokemmo"
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyR",
+                  "delayed": true
+                },
+                "name": "Repel",
+                "icon": "5079.png",
+                "iconTheme": "pokemmo"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "System",
+            "icon": "5626.png",
+            "iconTheme": "pokemmo",
+            "data": {},
+            "children": [
+              {
+                "type": "hotkey",
+                "name": "Incubators",
+                "icon": "5470.png",
+                "iconTheme": "pokemmo",
+                "data": {
+                  "hotkey": "KeyI",
+                  "delayed": true
+                }
+              },
+              {
+                "type": "hotkey",
+                "name": "GTL",
+                "icon": "261.png",
+                "iconTheme": "pokemmo",
+                "data": {
+                  "hotkey": "KeyP",
+                  "delayed": true
+                }
+              },
+              {
+                "type": "hotkey",
+                "name": "Friends",
+                "icon": "5437.png",
+                "iconTheme": "pokemmo",
+                "data": {
+                  "hotkey": "KeyV",
+                  "delayed": true
+                }
+              },
+              {
+                "type": "hotkey",
+                "name": "Bag",
+                "icon": "270.png",
+                "iconTheme": "pokemmo",
+                "data": {
+                  "hotkey": "KeyB",
+                  "delayed": true
+                }
+              },
+              {
+                "type": "hotkey",
+                "name": "Dex",
+                "icon": "5431.png",
+                "iconTheme": "pokemmo",
+                "data": {
+                  "hotkey": "KeyN",
+                  "delayed": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "shortcut": "Control+Shift+Space",
+      "shortcutID": "example-menu",
+      "centered": false,
+      "anchored": false,
+      "hoverMode": true,
+      "conditions": {
+        "appName": "pokemmo"
+      },
+      "tags": []
+    }
+  ],
+  "collections": [
+    {
+      "name": "Favorites",
+      "icon": "favorite",
+      "iconTheme": "material-symbols-rounded",
+      "tags": [
+        "favs"
+      ]
+    }
+  ]
+}
