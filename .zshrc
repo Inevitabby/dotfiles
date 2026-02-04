@@ -47,7 +47,7 @@ update() {
 # nnn
 alias nas="nnn ${HOME}/Sync/NAS" # ... in my NAS directory
 alias notes="nnn ${HOME}/Sync/Notes/Personal" # ... in my [personal] notes directory
-alias school="nnn '${HOME}/Sync/Notes/School/Fall 2025'" # ... in my school directory
+alias school="nnn '${HOME}/Sync/Notes/School/Spring 2026'" # ... in my school directory
 alias gitlab="cd '${HOME}/Scripts/Gitlab/notes/'; git pull; nnn .; git status" # ... in my Gitlab notes directory
 alias gl="gitlab"
 alias scripts="nnn '${HOME}/Scripts'" # ... in my scripts directory
