@@ -85,6 +85,8 @@ call plug#begin()
 	Plug 'numToStr/Comment.nvim'
 	" Highlight, jump. and resolve conflict markers
 	Plug 'rhysd/conflict-marker.vim'
+	" LISP parenthesis inference
+	Plug 'gpanders/nvim-parinfer'
 
 	" === Navigation ===
 	" LSP Diagnotics viewer
