@@ -4,20 +4,10 @@
     {
       "root": {
         "type": "submenu",
-        "name": "PokeMMO",
+        "name": "Overworld",
         "icon": "🐶",
         "iconTheme": "emoji",
         "children": [
-          {
-            "type": "hotkey",
-            "data": {
-              "hotkey": "KeyZ",
-              "delayed": true
-            },
-            "name": "Bike",
-            "icon": "259.png",
-            "iconTheme": "pokemmo"
-          },
           {
             "type": "hotkey",
             "data": {
@@ -29,63 +19,14 @@
             "iconTheme": "pokemmo"
           },
           {
-            "type": "submenu",
-            "data": {},
-            "name": "Battle",
-            "icon": "5001.png",
-            "iconTheme": "pokemmo",
-            "children": [
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "Digit1",
-                  "delayed": true
-                },
-                "name": "Simulate Hotkey",
-                "icon": "5003.png",
-                "iconTheme": "pokemmo"
-              },
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "Digit2",
-                  "delayed": true
-                },
-                "name": "Simulate Hotkey",
-                "icon": "5002.png",
-                "iconTheme": "pokemmo"
-              },
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "KeyL",
-                  "delayed": true
-                },
-                "name": "Simulate Hotkey",
-                "icon": "5015.png",
-                "iconTheme": "pokemmo"
-              },
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "KeyR",
-                  "delayed": true
-                },
-                "name": "Simulate Hotkey",
-                "icon": "5013.png",
-                "iconTheme": "pokemmo"
-              },
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "KeyZ",
-                  "delayed": true
-                },
-                "name": "Simulate Hotkey",
-                "icon": "5004.png",
-                "iconTheme": "pokemmo"
-              }
-            ]
+            "type": "hotkey",
+            "data": {
+              "hotkey": "KeyZ",
+              "delayed": true
+            },
+            "name": "Bike",
+            "icon": "259.png",
+            "iconTheme": "pokemmo"
           },
           {
             "type": "submenu",
@@ -94,6 +35,16 @@
             "icon": "5079.png",
             "iconTheme": "pokemmo",
             "children": [
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyR",
+                  "delayed": true
+                },
+                "name": "Repel",
+                "icon": "5079.png",
+                "iconTheme": "pokemmo"
+              },
               {
                 "type": "hotkey",
                 "data": {
@@ -113,75 +64,146 @@
                 "name": "Defog",
                 "icon": "defog.png",
                 "iconTheme": "pokemmo"
-              },
-              {
-                "type": "hotkey",
-                "data": {
-                  "hotkey": "KeyR",
-                  "delayed": true
-                },
-                "name": "Repel",
-                "icon": "5079.png",
-                "iconTheme": "pokemmo"
               }
-            ]
+            ],
+            "angle": 180
           },
           {
             "type": "submenu",
+            "data": {},
             "name": "System",
             "icon": "5626.png",
             "iconTheme": "pokemmo",
-            "data": {},
             "children": [
               {
                 "type": "hotkey",
-                "name": "Incubators",
-                "icon": "5470.png",
-                "iconTheme": "pokemmo",
                 "data": {
                   "hotkey": "KeyI",
                   "delayed": true
-                }
+                },
+                "name": "Incubator",
+                "icon": "5470.png",
+                "iconTheme": "pokemmo"
               },
               {
                 "type": "hotkey",
-                "name": "GTL",
-                "icon": "261.png",
-                "iconTheme": "pokemmo",
                 "data": {
                   "hotkey": "KeyP",
                   "delayed": true
-                }
+                },
+                "name": "GTL",
+                "icon": "261.png",
+                "iconTheme": "pokemmo"
               },
               {
                 "type": "hotkey",
-                "name": "Friends",
-                "icon": "5437.png",
-                "iconTheme": "pokemmo",
                 "data": {
                   "hotkey": "KeyV",
                   "delayed": true
-                }
+                },
+                "name": "Friend",
+                "icon": "5437.png",
+                "iconTheme": "pokemmo"
               },
               {
                 "type": "hotkey",
-                "name": "Bag",
-                "icon": "270.png",
-                "iconTheme": "pokemmo",
                 "data": {
                   "hotkey": "KeyB",
                   "delayed": true
-                }
+                },
+                "name": "Bag",
+                "icon": "270.png",
+                "iconTheme": "pokemmo"
               },
               {
                 "type": "hotkey",
-                "name": "Dex",
-                "icon": "5431.png",
-                "iconTheme": "pokemmo",
                 "data": {
                   "hotkey": "KeyN",
                   "delayed": true
-                }
+                },
+                "name": "Dex",
+                "icon": "5431.png",
+                "iconTheme": "pokemmo"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcut": "Control+Shift+Space",
+      "shortcutID": "example-menu",
+      "centered": false,
+      "anchored": false,
+      "hoverMode": true,
+      "conditions": {
+        "appName": "pokemmo"
+      },
+      "tags": []
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "Battle",
+        "icon": "5012.png",
+        "iconTheme": "pokemmo",
+        "children": [
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "KeyL",
+              "delayed": true
+            },
+            "name": "Quick Ball",
+            "icon": "5015.png",
+            "iconTheme": "pokemmo"
+          },
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "Digit2",
+              "delayed": true
+            },
+            "name": "Ultra Ball",
+            "icon": "5002.png",
+            "iconTheme": "pokemmo"
+          },
+          {
+            "type": "hotkey",
+            "data": {
+              "hotkey": "KeyR",
+              "delayed": true
+            },
+            "name": "Dusk Ball",
+            "icon": "5013.png",
+            "iconTheme": "pokemmo"
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "etc.",
+            "icon": "5004.png",
+            "iconTheme": "pokemmo",
+            "children": [
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "Digit1",
+                  "delayed": true
+                },
+                "name": "Great Ball",
+                "icon": "5003.png",
+                "iconTheme": "pokemmo",
+                "angle": 120
+              },
+              {
+                "type": "hotkey",
+                "data": {
+                  "hotkey": "KeyZ",
+                  "delayed": true
+                },
+                "name": "Poké Ball",
+                "icon": "5004.png",
+                "iconTheme": "pokemmo",
+                "angle": 240
               }
             ]
           }
