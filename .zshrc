@@ -66,13 +66,7 @@ alias topydo="${HOME}/Scripts/venv/bin/topydo" # Launch topydo
 alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 
 # Auto Editor
-alias auto-editor="${HOME}/Scripts/venv/bin/auto-editor --ffmpeg-location '/usr/bin/ffmpeg' --no-open"
-
-# Whoogle Search
-alias whoogle-search="${HOME}/Scripts/venv/bin/whoogle-search"
-
-# Subliminal
-alias subliminal="${HOME}/Scripts/venv/bin/subliminal"
+# alias auto-editor="auto-editor --ffmpeg-location '/usr/bin/ffmpeg' --no-open"
 
 # Personal Translation Script
 alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/translate"
@@ -122,6 +116,9 @@ export PATH="$PATH:${HOME}/.spicetify"
 # Cargo and Go
 export PATH="$PATH:${HOME}/.cargo/bin"
 export PATH="$PATH:${HOME}/go/bin"
+
+# uv (dev-python/uv)
+export PATH="$PATH:${HOME}/.local/bin"
 
 # ===============
 # fzf Integration

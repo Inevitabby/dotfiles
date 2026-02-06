@@ -38,15 +38,6 @@ function clone {
 		find . -name "test-data" -type d -exec rm -r {} + # Remove test-data directories
 	cd ".."
 }
-# Install a Python package into a virtual environment in ~/Scripts
-function pythonInstall {
-	local PACKAGE=$1
-	local DIRECTORY="${HOME}/Scripts"
-	mkdir -p "${DIRECTORY}"
-	cd "${DIRECTORY}" || error "Couldn't access ~/Scripts"
-	python -m venv venv
-	./venv/bin/pip3 install --disable-pip-version-check "${PACKAGE}"
-}
 # Print error and exit
 function error {
 	local MESSAGE=$1
@@ -87,15 +78,12 @@ if prompt "III. Would you like to update powerlevel10k + zsh-autosuggestions + z
 	echo "" | tee "zsh-syntax-highlighting/.revision-hash" "zsh-syntax-highlighting/.version" > /dev/null
 fi
 
-# Step IV: Install various Python cli tools to ~/Scripts, accessible through aliases in ~/.zshrc
-if prompt "IV.1 Would you like to install auto editor to a virtual Python environment in ~/Scripts? (https://github.com/WyattBlue/auto-editor)"; then
-	pythonInstall "auto-editor"
+# Step IV: Install various Python cli tools via dev-python/uv
+if prompt "IV.1 Would you like to install auto editor? (https://github.com/WyattBlue/auto-editor)"; then
+	uv tool install "auto-editor"
 fi
-if prompt "IV.2 Would you like to install whoogle to a virtual Python environment in ~/Scripts? (https://github.com/benbusby/whoogle-search)"; then
-	pythonInstall "whoogle-search"
-fi
-if prompt "IV.3 Would you like to install subliminal to a virtual Python environment in ~/Scripts? (https://github.com/Diaoul/subliminal)"; then
-	pythonInstall "subliminal"
+if prompt "IV.2 Would you like to install open-webui? (https://github.com/open-webui/open-webui)"; then
+	uv tool install "open-webui"
 fi
 
 # Step V: Update/Install Neovim Plugins + Vim Plug using Vim Plug
