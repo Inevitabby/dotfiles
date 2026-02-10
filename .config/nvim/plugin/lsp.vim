@@ -53,25 +53,33 @@ vim.lsp.config("dartls", {
 
 -- hrsh7th/nvim-cmp: Add keymappings
 -- f3fora/cmp-spell: Add cmp dictionary source
+-- L3MON4D3/LuaSnip: Integrate snippets
 local cmp = require("cmp");
 cmp.setup({
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
 	}),
 	sources = {
-		{
-			name = "nvim_lsp"
-		},
-		{
-			name = "spell",
+		{ name = "buffer" },
+		{ name = "nvim_lsp" },
+		{ name = "path" },
+		{ name = "luasnip", option = { show_autosnippets = true } },
+		{ name = "spell",
 			option = {
 				keep_all_entries = false,
 				enable_in_context = function()
-				return true
+					return true
 				end,
 			},
 		},
@@ -91,4 +99,5 @@ require('nvim-ts-autotag').setup({
 		}
 	}
 })
+
 EOF
