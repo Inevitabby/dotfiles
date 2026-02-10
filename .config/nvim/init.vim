@@ -76,7 +76,7 @@ call plug#begin()
 	" Git integration. (Most notable is ':G' for arbitrary git commands)
 	Plug 'tpope/vim-fugitive' 
 	" Contextual indentation highlighting
-	Plug 'lukas-reineke/indent-blankline.nvim'
+	Plug 'nvim-mini/mini.indentscope'
 	" Set shiftwidth and expandtab automatically per-file
 	Plug 'tpope/vim-sleuth'
 	" Integrated keymappings to work with surrounding text
