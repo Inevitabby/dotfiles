@@ -120,6 +120,11 @@ export PATH="$PATH:${HOME}/go/bin"
 # uv (dev-python/uv)
 export PATH="$PATH:${HOME}/.local/bin"
 
+# Android SDK
+export ANDROID_HOME="/media/Data/Android/"
+export ANDROID_SDK_ROOT="${ANDROID_HOME}"
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+
 # ===============
 # fzf Integration
 # ===============
