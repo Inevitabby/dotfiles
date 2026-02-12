@@ -44,18 +44,22 @@ function error {
 	echo "ERROR: ${MESSAGE}"
 	exit
 }
-
 # Find Firefox Profile Path (https://askubuntu.com/a/354907)
-cd ~/.mozilla/firefox/ || error "Couldn't access ~/.mozilla/firefox/"
-if [[ $(grep '\[Profile[^0]\]' profiles.ini) ]]; then
-	FIREFOX_PROFILE=$(grep -E '^\[Profile|^Path|^Default' profiles.ini | grep -1 '^Default=1' | grep '^Path' | cut -c6-)
-else
-	FIREFOX_PROFILE=$(grep 'Path=' profiles.ini | sed 's/^Path=//')
-fi
-FIREFOX_PROFILE="${HOME}/.mozilla/firefox/${FIREFOX_PROFILE}"
+FIREFOX_PROFILE=""
+function find_firefox_profile {
+	[[ -n "$FIREFOX_PROFILE" ]] && return 0
+	cd ~/.mozilla/firefox/ || error "Couldn't access ~/.mozilla/firefox/"
+	if [[ $(grep '\[Profile[^0]\]' profiles.ini) ]]; then
+		FIREFOX_PROFILE=$(grep -E '^\[Profile|^Path|^Default' profiles.ini | grep -1 '^Default=1' | grep '^Path' | cut -c6-)
+	else
+		FIREFOX_PROFILE=$(grep 'Path=' profiles.ini | sed 's/^Path=//')
+	fi
+	FIREFOX_PROFILE="${HOME}/.mozilla/firefox/${FIREFOX_PROFILE}"
+}
 
 # Step I: Install Arkenfox
 if prompt "I. Would you like to install Arkenfox + user-overrides.js to ${FIREFOX_PROFILE}?"; then
+	find_firefox_profile
 	echo "Bootstrap: Installing user-overrides.js to ${FIREFOX_PROFILE}"
 	cp "${HOME}/.config/yadm/firefox/user-overrides.js" "${FIREFOX_PROFILE}/user-overrides.js"
 	bash "${HOME}/.config/yadm/firefox/user.js/updater.sh" -p "${FIREFOX_PROFILE}"
@@ -63,6 +67,7 @@ fi
 
 # Step II: Install Firefox Userchrome
 if prompt "II. Would you like to install Cascade + userChrome.css to ${FIREFOX_PROFILE}?"; then
+	find_firefox_profile
 	echo "Bootstrap: Installing userChrome to ${FIREFOX_PROFILE}"
 	cp -r "${HOME}/.config/yadm/firefox/chrome/" "${FIREFOX_PROFILE}/chrome/"
 fi
