@@ -1,5 +1,12 @@
 " catpuccin/nvim: Apply colorscheme
-colorscheme catppuccin
+lua << EOF
+require("catppuccin").setup({
+    flavour = "auto",
+    transparent_background = true,
+    auto_integrations = true,
+})
+vim.cmd.colorscheme "catppuccin"
+EOF
 
 " psliwka/vim-smoothie: Even smoother animation
 let g:smoothie_update_interval = 1
