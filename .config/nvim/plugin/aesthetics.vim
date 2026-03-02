@@ -86,6 +86,7 @@ lua << EOF
 EOF
 
 " folke/noice.nvim: Setup
+if !g:slowComputer
 lua << EOF
 	require("noice").setup({
 		lsp = {  -- Disable LSP Indicator
@@ -127,6 +128,7 @@ lua << EOF
 		},
 	})
 EOF
+endif
 
 " rcarriga/nvim-notify: Set style, timeout, and load Telescope extension
 lua << EOF
