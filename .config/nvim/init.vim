@@ -165,6 +165,9 @@ call plug#begin()
 	" == Snippet Engine ==
 	Plug 'L3MON4D3/LuaSnip'
 		Plug 'saadparwaiz1/cmp_luasnip'
+	
+	" === Misc ===
+	Plug 'lambdalisue/vim-suda'
 call plug#end()
 
 " ===================
@@ -229,10 +232,10 @@ autocmd TermClose * execute "bdelete! " . expand("<abuf>")
 " Misc
 " ====
 
-" :W to Write as Sudo
-" https://vi.stackexchange.com/a/25038
-com -bar W exe 'w !pkexec tee >/dev/null %:p:S' | setl nomod
-com -bar Wq exe 'W' | quit
+" " :W to Write as Sudo
+" " https://vi.stackexchange.com/a/25038
+" com -bar W exe 'w !pkexec tee >/dev/null %:p:S' | setl nomod
+" com -bar Wq exe 'W' | quit
 
 " Create Undo File Directory
 " https://vi.stackexchange.com/a/53
