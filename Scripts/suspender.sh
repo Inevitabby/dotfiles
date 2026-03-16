@@ -20,8 +20,9 @@ TARGETS=(
     "syncthing"
 )
 
+[[ -z "$1" ]] && set -- menu
 [[ "$1" == "freeze" || "$1" == "resume" || "$1" == "menu" ]] \
-    || { echo "Usage: $0 {freeze|resume|menu}"; exit 1; }
+    || { echo "Usage: $0 [freeze|resume|menu] (default: menu)"; exit 1; }
 
 get_descendants() {
     local current_pids=("$@") all_pids=("$@")
