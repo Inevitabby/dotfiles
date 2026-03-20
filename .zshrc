@@ -65,9 +65,6 @@ alias todo="vi -c ':set filetype=todotxt' ${HOME}/Sync/Notes/todo.txt" # Edit To
 alias topydo="${HOME}/Scripts/venv/bin/topydo" # Launch topydo
 alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 
-# Auto Editor
-# alias auto-editor="auto-editor --ffmpeg-location '/usr/bin/ffmpeg' --no-open"
-
 # Personal Translation Script
 alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/translate"
 
@@ -75,11 +72,18 @@ alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/transl
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias g="git"
 
-# Zola
-alias zola="flatpak run org.getzola.zola"
-
-# Clipboard
-alias clip="wl-copy" # dep: gui-apps/wl-clipboard
+# Smart Clipboard
+# - Copies file URIs for GUI pasting when given file arguments (e.g., clip file.txt)
+# - Fallback to copying raw text for piped input or strings (e.g., cat file.txt | clip)
+clip() { # dep: gui-apps/wl-clipboard
+    if [ -t 0 ] && [ "$#" -gt 0 ] && [ -e "$1" ]; then
+        for f in "$@"; do
+            printf "file://%s\r\n" "$(realpath "$f")"
+        done | wl-copy -t text/uri-list
+    else
+        wl-copy "$@"
+    fi
+}
 
 # Accept package
 alias accept_keyword='function _accept_keyword(){ 
