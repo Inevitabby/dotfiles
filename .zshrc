@@ -79,7 +79,7 @@ alias g="git"
 alias zola="flatpak run org.getzola.zola"
 
 # Clipboard
-alias clip="xsel -b" # dep: x11-misc/xsel
+alias clip="wl-copy" # dep: gui-apps/wl-clipboard
 
 # Accept package
 alias accept_keyword='function _accept_keyword(){ 
