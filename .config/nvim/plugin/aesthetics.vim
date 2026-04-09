@@ -1,3 +1,13 @@
+" MeanderingProgrammer/render-markdown.nvim: Initialization
+lua << EOF
+require('render-markdown').setup({
+	file_types = { 'markdown', 'vimwiki' },
+	heading = { enabled = false },
+	code = { sign = false },
+})
+vim.treesitter.language.register('markdown', 'vimwiki')
+EOF
+
 " catpuccin/nvim: Apply colorscheme
 lua << EOF
 require("catppuccin").setup({

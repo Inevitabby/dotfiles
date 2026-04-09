@@ -26,6 +26,8 @@ let g:slowComputer = hostname() == "Pavilion"
 call plug#begin()
 
 	" === Aesthetics ===
+	" Pretty Markdown
+	Plug 'MeanderingProgrammer/render-markdown.nvim'
 	" Catppuccin color scheme
 	Plug 'catppuccin/nvim', { 'as': 'catppuccin', 'do': ':CatppuccinCompile' } 
 	" Smooth-scrolling. WARNING: Causes lots of redraws!
