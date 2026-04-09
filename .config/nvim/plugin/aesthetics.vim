@@ -45,7 +45,7 @@ lua << EOF
 			vim.cmd("cabbrev <buffer> wq let b:quitFromZen = 1 <bar> wq")
 			vim.cmd("cabbrev <buffer> x let b:quitFromZen = 1 <bar> x")
 			-- Disable highlighting in Zen mode
-			vim.opt.spell = false
+			-- vim.opt.spell = false
 		end,
 		on_close = function()
 			-- Quit Neovim if quitting from ZenMode
@@ -54,7 +54,7 @@ lua << EOF
 				vim.cmd("q")
 			end
 			-- Reenable highlighting when leaving Zen mode
-			vim.opt.spell = true
+			-- vim.opt.spell = true
 		end,
 	})
 EOF
