@@ -215,6 +215,9 @@ xnoremap <leader>P "+P
 map <silent> ZZ :x<CR>
 map <silent> ZQ :q!<CR>
 
+" leader+s: toggle spellcheck
+nnoremap <Leader>s :set spell!<CR>
+
 " ===================
 " Non-Plugin Autocmds
 " ===================
