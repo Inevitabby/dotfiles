@@ -4,6 +4,7 @@ require('render-markdown').setup({
 	file_types = { 'markdown', 'vimwiki' },
 	heading = { enabled = false },
 	code = { sign = false },
+	html = { comment = { conceal = false } }
 })
 vim.treesitter.language.register('markdown', 'vimwiki')
 EOF
