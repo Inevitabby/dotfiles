@@ -3,6 +3,22 @@ if !g:slowComputer
 	lua require("twilight").setup({ dimming = { alpha = 0.5 }, context = 0, expand = { "paragraph", "fenced_code_block", "list" } })
 endif
 
+" === Insert Footnote ===
+function! InsertFootnote()
+	let l:id = input('Footnote ID: ')
+	if empty(l:id)
+		startinsert
+		return
+	endif
+	" 1. Insert anchor
+	execute "normal! a[^" . l:id . "]\<ESC>"
+	" 2. Insert definition and edit
+	execute "normal! o\<CR>[^" . l:id . "]: \<ESC>"
+	startinsert!
+endfunction
+" Alt-f to create a footnote
+imap <silent> <A-f> <ESC>:call InsertFootnote()<CR>
+
 " === Markdown Syntax Keymaps ===
 " == Utility Functions ==
 " Utility function to provide mappings for the three different visual modes
