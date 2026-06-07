@@ -51,6 +51,22 @@ vim.lsp.config("dartls", {
 	capabilities = capabilities
 });
 
+-- Prolog LSP
+-- Note: dev-lang/swi-prolog must have archive use flag
+-- $ swipl -g "pack_install(lsp_server)" -t halt
+-- Prolog LSP
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "prolog",
+	callback = function(args)
+		vim.lsp.start({
+			name = "prolog_lsp",
+			cmd = { "swipl", "-g", "use_module(library(lsp_server)).", "-g", "lsp_server:main", "-t", "halt", "--", "stdio" },
+			root_dir = vim.fs.root(args.buf, { "pack.pl", ".git" }) or vim.fn.expand('%:p:h'),
+			capabilities = capabilities,
+		})
+	end,
+})
+
 -- hrsh7th/nvim-cmp: Add keymappings
 -- f3fora/cmp-spell: Add cmp dictionary source
 -- L3MON4D3/LuaSnip: Integrate snippets
@@ -71,10 +87,10 @@ cmp.setup({
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 	}),
 	sources = {
-		{ name = "buffer" },
+		{ name = "luasnip", option = { show_autosnippets = true } },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "luasnip", option = { show_autosnippets = true } },
+		{ name = "buffer" },
 		{ name = "spell",
 			option = {
 				keep_all_entries = false,

@@ -89,6 +89,8 @@ call plug#begin()
 	Plug 'rhysd/conflict-marker.vim'
 	" LISP parenthesis inference
 	Plug 'gpanders/nvim-parinfer'
+	" Color CSS colors
+	Plug 'NvChad/nvim-colorizer.lua'
 
 	" === Navigation ===
 	" LSP Diagnotics viewer
@@ -170,6 +172,7 @@ call plug#begin()
 	
 	" === Misc ===
 	Plug 'lambdalisue/vim-suda'
+	Plug 'kawre/leetcode.nvim'
 call plug#end()
 
 " ===================

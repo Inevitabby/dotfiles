@@ -40,6 +40,21 @@ function! VisualMapping(prefix, ...)
 		" TODO
 	endif
 endfunction
+" Utility function to poll for a file's existence and open it via xdg-open
+function! s:XdgOpenPoll(filepath, tid)
+	if filereadable(a:filepath)
+		call timer_stop(a:tid)
+		call jobstart(['xdg-open', a:filepath])
+	endif
+endfunction
+function! XdgOpen(filepath)
+	" Skip if SSH session
+	if !empty($SSH_CONNECTION) || !empty($SSH_TTY)
+		return
+	endif
+	" Poll every 200ms, max 25 attempts (5 seconds)
+	call timer_start(200, function('s:XdgOpenPoll', [a:filepath]), {'repeat': 25})
+endfunction
 " == Keymaps ==
 " Alt-b to bold 
 vmap <silent> <A-b> :call VisualMapping("**")<CR>
@@ -155,16 +170,16 @@ function! RunDaemonAndView()
 	let l:file_dir = expand('%:p:h')
 	let l:filename = expand('%:t')
 	let l:parent_dir_name = fnamemodify(l:file_dir, ':t')
+	let l:repo_root = fnamemodify(finddir('.git', l:file_dir . ';'), ':p:h:h')
 	let l:html_filename = substitute(l:filename, '\.md$', '.html', '')
-	let l:html_file_abs = fnamemodify(l:file_dir . '/../public/' . l:parent_dir_name . '/' . l:html_filename, ':p')
+	let l:html_file_abs = l:repo_root . '/public/' . l:parent_dir_name . '/' . l:html_filename
 	" Start daemon
-	call jobstart(['bash', fnamemodify(l:file_dir . '/../daemon.sh', ':p')])
+	call jobstart(['bash', l:repo_root . '/daemon.sh'])
 	" Open output file
 	if !empty($SSH_CONNECTION) || !empty($SSH_TTY) " Skip if SSH session
 		return
 	endif
-	let l:xdg_cmd = "call jobstart(['xdg-open', '" . l:html_file_abs . "'])"
-	call timer_start(3000, {-> execute(l:xdg_cmd)})
+	call XdgOpen(l:html_file_abs)
 endfunction
 " Alt+e to edit
 nnoremap <A-e> :call RunDaemonAndView()<CR>
@@ -199,8 +214,7 @@ function PandocMultitool (pandocArgs, livePreview=0, silent=0)
 	" Start Live Preview
   	if a:livePreview
   		silent exec "autocmd BufWritePost * silent call jobstart('" .. l:command .. "')"
-		let l:xdgHack = "call jobstart(\"xdg-open '" .. l:outputPath .. "'\")" " HACK: https://bugs.kde.org/show_bug.cgi?id=442721#c10
-		call timer_start(3000, { tid -> execute(l:xdgHack)}) " HACK: Delay opening file to avoid opening a non-existent file
+		call XdgOpen(l:outputPath)
 	endif
 endfunction
 " Count the number of pages in a PDF (https://stackoverflow.com/a/36801253)

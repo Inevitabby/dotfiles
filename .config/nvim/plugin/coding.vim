@@ -25,4 +25,6 @@ ft.set("vimwiki", ft.get("html"))
 -- nvim-mini/mini.indentscope: Setup
 require("mini.indentscope").setup()
 
+-- NvChad/nvim-colorizer.lua: Setup
+require('colorizer').setup()
 EOF
