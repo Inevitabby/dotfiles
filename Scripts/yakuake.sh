@@ -21,19 +21,20 @@ function msg () { MSG="echo -e \"\e[1m${1}\e[0m\""; }
 GREP_TODAY="grep \"due:\$(date '+%Y-%m-%d')\""
 GREP_TOMORROW="grep \"due:\$(date --date='tomorrow' '+%Y-%m-%d')\""
 # Run commands in splits
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 0 " watch -t 'claws-mail --statistics | cowsay -f dragon'"
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 1 " watch -tc 'cal -y --color=always | sed \"s/^/     	  			  /\"'"
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 2 " notes"
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 3 " cmus"
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 5 " eselect news list new"
+function runInSplit () { qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal "$1" " sleep 1; $2"; }
+runInSplit 0 "watch -t 'claws-mail --statistics | cowsay -f dragon'"
+runInSplit 1 "watch -tc 'cal -y --color=always | sed \"s/^/                 /\"'"
+runInSplit 2 "notes"
+runInSplit 3 "cmus"
+runInSplit 5 "eselect news list new"
 msg "DUE TODAY!" 
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 4 " watch -tc '${MSG}; ${TODO} | ${GREP_TODAY}'"
+runInSplit 4 "watch -tc '${MSG}; ${TODO} | ${GREP_TODAY}'"
 msg "NOT DUE TODAY OR TOMORROW"
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 7 " watch -tc '${MSG}; ${TODO} ls due | ${GREP_TODAY} -v | ${GREP_TOMORROW} -v'"
+runInSplit 7 "watch -tc '${MSG}; ${TODO} ls due | ${GREP_TODAY} -v | ${GREP_TOMORROW} -v'"
 msg "DUE TOMORROW!" 
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 8 " watch -tc '${MSG}; ${TODO} ls due | ${GREP_TOMORROW}'"
+runInSplit 8 "watch -tc '${MSG}; ${TODO} ls due | ${GREP_TOMORROW}'"
 msg "NOT DUE."
-qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal 9 " watch -tc '${MSG}; ${TODO} ls -due'"
+runInSplit 9 "watch -tc '${MSG}; ${TODO} ls -due'"
 # === Resize Splits ===
 qdbus6 org.kde.yakuake /yakuake/window toggleWindowState
 # Center-column horizontal splits
