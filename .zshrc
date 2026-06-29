@@ -62,11 +62,8 @@ alias z='zettel' # For quicknotes that I want to store without categorizing
 
 # Todo.txt
 alias todo="vi -c ':set filetype=todotxt' ${HOME}/Sync/Notes/todo.txt" # Edit Todo.txt in Neovim
-alias topydo="${HOME}/Scripts/venv/bin/topydo" # Launch topydo
 alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 
-# Personal Translation Script
-alias translate="${HOME}/Scripts/venv/bin/python ${HOME}/Scripts/venv/bin/translate"
 
 # Git
 alias gitroot='cd $(git rev-parse --show-toplevel)'
