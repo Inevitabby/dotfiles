@@ -2,6 +2,9 @@ general.import = [
 	"~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
+[font]
+size = 14
+
 [window]
 dynamic_padding = true
 # decorations = "None"
