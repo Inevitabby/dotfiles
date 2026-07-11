@@ -9,6 +9,7 @@ scalebox
 texttrademark
 === propositional logic ===
 hyp
+disjunction
 == inference rules ==
 add
 con
@@ -70,16 +71,11 @@ csh
 csr
 cwd
 cybersecurity
-disjunction
 eof
 fcfs
 fhs
 filesystem
 filesystems
-foo1
-foo2
-foo3
-foo4
 foundational
 gcc
 gdb
@@ -165,3 +161,21 @@ ginza
 harajuku
 nakano
 uniqlo
+=== security ===
+backdoor
+backdoors
+doxxing
+exfiltration
+fileless
+honeyfiles
+honeynets
+honeytokens
+pii
+ransomware
+sideloading
+smishing
+trojan
+trojans
+typosquatting
+vishing
+geoblocking
