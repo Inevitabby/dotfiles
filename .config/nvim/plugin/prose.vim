@@ -13,3 +13,21 @@ let g:vimwiki_custom_wiki2html=$HOME."/.config/nvim/pandoc/vimwiki_converter.sh"
 let g:vimwiki_key_mappings = { "lists": 0 }
 " Enable folding
 let g:vimwiki_folding="custom"
+
+
+" preservim/vim-pencil & preservim/vim-litecorrect: Setup
+let litecorrect_user_dict = {
+	\ "cybersecurity": ["cybersec"],
+	\ "education": ["edu"],
+	\ "organization": ["org"],
+	\ "organizations": ["orgs"],
+	\ "performance": ["perf"],
+	\ "security": ["sec"],
+	\ "unauthorize": ["unauth"],
+	\ "unauthorized": ["unauthed"],
+	\ }
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,vimwiki call pencil#init({"wrap": "soft"}) 
+	\ | call litecorrect#init(litecorrect_user_dict)
+augroup END

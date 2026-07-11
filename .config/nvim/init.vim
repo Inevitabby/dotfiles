@@ -65,8 +65,6 @@ call plug#begin()
 	Plug 'vimwiki/vimwiki'
 	" Seamless wrapping tweaks and undo points suited for prose (e.g. undo points on punctuation)
 	Plug 'preservim/vim-pencil' 
-		" Automatically enable in markdown/vimwiki and use soft wrapping
-		autocmd FileType markdown,vimwiki call pencil#init({"wrap": "soft"}) | call litecorrect#init()
 		" Minimal auto-correction (e.g., `teh` -> `the`, `Im` -> `I'm`, etc.)
 		Plug 'preservim/vim-litecorrect' 
 	" Detecting words/statements that are weak, weaselly, idiomatic, jargony, etc.
