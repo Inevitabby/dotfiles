@@ -76,8 +76,12 @@ user_pref("widget.use-xdg-desktop-portal", true);
 /* Use KDE (Dolphin) Filepicker over Nautilus (GNOME) ***/
 user_pref("widget.use-xdg-desktop-portal", true);
 
-/* Stop launching in different virtual desktops ***/
+/* Don't restore windows to respective virtual desktops ***/
 user_pref("widget.disable-workspace-management", true);
+
+// === Smooth Scroll ===
+
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
 
 // === Bugfixes ===
 
@@ -88,3 +92,10 @@ user_pref("browser.urlbar.update2", true);
 /* Disable mailto link assocation ***/
 /* Explanation: Every time I open outlook I get a message in my top bar asking to set outlook.office.com as my default application for mailto links. I don't. ***/
 user_pref("network.protocol-handler.external.mailto", false);
+
+/* Force 144Hz Refresh Rate */
+/* Explanation: Firefox is stuck at 60Hz for some reason :( */
+user_pref("layout.frame_rate", 144);
+
+/* Enable Playing DRM */
+user_pref("media.eme.enabled", true)
