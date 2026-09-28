@@ -18,6 +18,13 @@ TARGETS=(
     "nicotine"
     "qbittorrent"
     "syncthing"
+    # "jellyfin"
+    "Sonarr"
+    "Prowlarr"
+
+    # 4. Misc Other
+    "darktable"
+    "org.gnome.Maps"
 )
 
 [[ -z "$1" ]] && set -- menu
