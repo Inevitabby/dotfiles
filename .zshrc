@@ -70,7 +70,10 @@ alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 alias dl="yt-dlp --cookies-from-browser firefox"
 
 # Git
-alias gitroot='cd $(git rev-parse --show-toplevel)'
+gitroot() {
+  local root
+  root=$(git rev-parse --show-toplevel) && cd "$root"
+}
 alias g="git"
 
 # Smart Clipboard
