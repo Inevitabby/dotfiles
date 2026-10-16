@@ -42,6 +42,8 @@ update() {
 	e --depclean
 	echo "Running module-rebuild [4/4]"
 	e @module-rebuild
+	notify-send "Finished Updating"
+	pw-play /usr/share/sounds/freedesktop/stereo/complete.oga
 }
 
 # nnn
