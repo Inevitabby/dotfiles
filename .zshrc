@@ -69,6 +69,27 @@ alias t="todo.sh -d ${HOME}/.config/todo/config.sh"
 # yt-dlp
 alias dl="yt-dlp --cookies-from-browser firefox"
 
+# Shrink media
+shrink() {
+    local mime=$(file -b --mime-type "$1")
+
+    if [[ "$mime" == video/* ]]; then
+        local out="${1%.*}-shrunk.webm"
+        
+        echo "Starting Pass 1 (Video Statistics)..."
+        ffmpeg -y -v warning -stats -i "$1" -c:v libvpx-vp9 -b:v 1M -pass 1 -r 23 -vf "scale=-2:720" -an -f null /dev/null
+        
+        echo "Starting Pass 2 (Encoding)..."
+        ffmpeg -y -v warning -stats -i "$1" -c:v libvpx-vp9 -b:v 1M -pass 2 -r 23 -vf "scale=-2:720" -c:a libopus -b:a 48k "$out"
+        
+        echo "Done: $out"
+    else
+        echo "Processing Image..."
+        magick "$1" -resize "1920x1080>" -quality 75 "${1%.*}-shrunk.jpg"
+        echo "Done: ${1%.*}-shrunk.jpg"
+    fi
+}
+
 # Git
 gitroot() {
   local root
