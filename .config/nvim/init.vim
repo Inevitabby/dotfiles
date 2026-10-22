@@ -219,6 +219,10 @@ map <silent> ZQ :q!<CR>
 " leader+s: toggle spellcheck
 nnoremap <Leader>s :set spell!<CR>
 
+" alt+p: Quick-paste last explicitly yanked thing
+nnoremap <M-p> "0p
+xnoremap <M-p> "0p
+
 " ===================
 " Non-Plugin Autocmds
 " ===================
