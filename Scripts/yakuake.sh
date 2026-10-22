@@ -10,11 +10,11 @@ qdbus6 org.kde.yakuake /yakuake/sessions splitTerminalTopBottom 2
 # === Run Commands ===
 # Run commands in splits
 function runInSplit () { qdbus6 org.kde.yakuake /yakuake/sessions runCommandInTerminal "$1" " sleep 2; $2"; }
-runInSplit 0 "watch -t 'claws-mail --statistics | cowsay -f www'"
-runInSplit 1 "watch -tc 'cal -y --color=always | sed \"s/^/                 /\"'"
-runInSplit 2 "notes"
+runInSplit 0 "eselect news list new | cowsay -f www"
+runInSplit 1 "watch -tc 'cal -y --color=always | tail -n +1 | sed \"s/^/                 /\"'"
+runInSplit 2 "sfeed_update; sfeed_curses ~/.sfeed/feeds/*"
 runInSplit 3 "cmus"
-runInSplit 5 "eselect news list new"
+runInSplit 5 "echo 'im outta ideas'"
 runInSplit 4 "nicotine --headless"
 # === Resize Splits ===
 qdbus6 org.kde.yakuake /yakuake/window toggleWindowState
