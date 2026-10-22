@@ -19,7 +19,7 @@
 	# Navigate with pager 
 	navigate = true
 	# Show line numbers in the diff
-	line-numbers= true
+	line-numbers = true
 	# Show side-by-side diffs
 	side-by-side = true
 	# Syntax highlighting and color tweaks for my Catppuccin Mocha terminal
