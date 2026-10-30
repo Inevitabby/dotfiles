@@ -43,7 +43,7 @@ update() {
 	e --depclean
 	echo "Running module-rebuild [4/4]"
 	e @module-rebuild
-	notify-send "Finished Updating"
+	qdbus6 org.kde.plasmashell /org/kde/osdService org.kde.osdService.showText "smiley" "Update Finished"
 	pw-play /usr/share/sounds/freedesktop/stereo/complete.oga
 }
 
