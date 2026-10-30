@@ -25,6 +25,7 @@ alias cat="bat"
 alias grep="grep --color=auto"
 alias diff="diff --color --side-by-side --minimal"
 alias cp="cp -i" # Confirm before overwriting something
+alias newest="ls --sort=age | head -n"
 
 # Portage (requires "permit nopass <user> cmd emerge" in /etc/doas.conf)
 alias emerge="doas emerge"
